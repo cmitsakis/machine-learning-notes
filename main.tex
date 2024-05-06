@@ -1,0 +1,194 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage{bookmark}
+\usepackage{geometry}
+\geometry{
+        paper=a4paper,
+        top=2cm,
+        bottom=2cm,
+        left=1.5cm,
+        right=1.5cm,
+        headheight=0.75cm,
+        footskip=1.5cm,
+        headsep=0.75cm,
+}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage[normalem]{ulem}
+\usepackage{parskip}
+\usepackage{unicode-math}
+
+\title{Machine Learning Notes}
+
+
+\begin{document}
+
+\vspace*{2cm}
+\begin{center}
+	\Huge\textbf{Machine Learning Notes}\\
+	\LARGE\textit{an introduction to machine learning}
+\end{center}
+\vspace*{2cm}
+
+\textit{Machine Learning Notes} \url{https://github.com/cmitsakis/machine-learning-notes} \\
+Copyright © 2024 by \textit{Charalampos Mitsakis} \url{https://github.com/cmitsakis} \\
+is licensed under \textit{Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA 4.0)}. \\
+To view a copy of this license, visit \url{https://creativecommons.org/licenses/by-sa/4.0/}
+
+
+\chapter{Probability Theory}
+
+\paragraph*{Conditional probability}
+\[P(A \mid B) = \frac{P(A \cap B)}{P(B)}\]
+
+\paragraph*{Sum rule}
+\[P(A)=\sum_n P(A \cap B_n)\]
+or, alternatively
+\[P(A)=\sum_n P(A \mid B_n) P(B_n)\]
+
+\paragraph*{Product rule}
+\[P(A, B) = P(A) P(B \mid A)\]
+
+\paragraph*{Bayes theorem}
+\[P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}\]
+\[P(A_i \mid B) = \frac{P(B \mid A_i) P(A_i)}{\sum\limits_j P(B \mid A_j) P(A_j)}\]
+
+\paragraph*{Probability densities}
+\[P[x \in (a, b)] = \int_a^b p(x)\ dx\]
+cumulative distribution function:
+\[P(z) = \int_{-\infty}^z p(x)\ dx\]
+sum rule:
+\[p(x) = \int p(x, y)\ dx\]
+product rule:
+\[p(x, y) = p(x) p(y \mid x)\]
+
+\paragraph*{Expectation}
+\[E[X] = \sum_{i=1}^\infty x_i p_i\]
+\[E[g(X)] = \sum_{x} g(x) p(x)\]
+\[E[X] = \int_{-\infty}^\infty x f(x)\ dx\]
+\[E[g(X)] = \int_{-\infty}^\infty g(x) f(x)\ dx\]
+
+\paragraph*{Variance and covariance}
+\[\begin{split}
+	\operatorname{Var}(X) &= E[(X - \mu)^2] \\
+	&= E[X^2] - E[X]^2 \\
+	&= \operatorname{Cov}(X, X)
+\end{split}\]
+\[\begin{split}
+	\operatorname{cov}(X, Y) &= E{\left[(X - E[X])(Y - E[Y])\right]} \\
+	&= E[X Y] - E[X] E[Y]
+\end{split}\]
+\paragraph*{Entropy}
+\[H[X] = - \sum_x p(x) \log_2 p(x)\]
+
+
+\chapter{Bayesian Decision Theory}
+
+\[P(\omega_i \mid x) = \frac{P(x \mid \omega_i) P(\omega_i)}{P(x)} = \frac{P(x \mid \omega_i) P(\omega_i)}{\sum\limits_j P(x \mid \omega_j) P(\omega_j)}\]
+
+\begin{mdframed}
+	\textbf{videos}
+
+	\href{https://www.youtube.com/watch?v=HZGCoVF3YvM}{Bayes theorem, the geometry of changing beliefs [3Blue1Brown]}
+
+	\href{https://www.youtube.com/watch?v=4JscUHGWaB4}{Machine Learning: Bayes Decision Theory}
+\end{mdframed}
+
+\section{Minimum Error Classifier (MAP)}
+A Bayesian classifier that minimizes the classification error probability.
+
+For two classes:
+\[P(\omega_1 \mid x) > P(\omega_2 \mid x) \Rightarrow x \in \omega_1\]
+\[P(\omega_2 \mid x) > P(\omega_1 \mid x) \Rightarrow x \in \omega_2\]
+
+equivalently:
+\[P(x \mid \omega_1)P(\omega_1) > P(x \mid \omega_2)P(\omega_2) \Rightarrow x \in \omega_1\]
+\[P(x \mid \omega_2)P(\omega_2) > P(x \mid \omega_1)P(\omega_1) \Rightarrow x \in \omega_2\]
+
+For many classes:
+\[P(\omega_i \mid x) > P(\omega_j \mid x),\ \forall j\ j \neq i \Rightarrow x \in \omega_i\]
+
+\section{Minimimum Risk Classifier}
+A Bayesian classifier that minimizes the total expected risk. It is useful for cases where some decisions are more important than others.
+
+\subsection*{for two classes:}
+\[L = \begin{bmatrix}
+	\lambda_{11} & \lambda_{12} \\
+	\lambda_{21} & \lambda_{22}
+\end{bmatrix}\]
+usually:
+\[L = \begin{bmatrix}
+	0 & \lambda_{12} \\
+	\lambda_{21} & 0
+\end{bmatrix}\]
+
+\[l_1 = \lambda_{11} p(x \mid \omega_1)P(\omega_1) + \lambda_{21} p(x \mid \omega_2)P(\omega_2)\]
+\[l_2 = \lambda_{12} p(x \mid \omega_1)P(\omega_1) + \lambda_{22} p(x \mid \omega_2)P(\omega_2)\]
+
+\[x \in \omega_1 \text{ if } l_1 < l_2 \Leftrightarrow (\lambda_{21}-\lambda_{22}) p(x \mid \omega_2)P(\omega_2) < (\lambda_{12}-\lambda_{11}) p(x \mid \omega_1)P(\omega_1)\]
+
+\[x \in \omega_1 (\omega_2) \text{ if } \frac{p(x \mid \omega_1)}{p(x \mid \omega_2)} > (<) \frac{P(\omega_2)}{P(\omega_1)}\frac{\lambda_{21}-\lambda_{22}}{\lambda_{12}-\lambda_{11}}\]
+
+\section{Discriminant functions}
+$g_i (\symbf{x}) \equiv f(P(\omega_i \mid \symbf{x}))$ where $f$ is a monotonically increasing function.
+
+\[g_i(\symbf{x}) > g_j(\symbf{x}),\ \forall j\ j \neq i \Rightarrow x \in \omega_i\]
+
+decision surfaces:
+\[g_{ij}(\symbf{x}) \equiv g_i(\symbf{x}) - g_j(\symbf{x}) = 0,\ \forall i, j\ i \neq j\]
+
+\subsection*{Bayesian classification for normal distributions}
+\[g_i(\symbf{x}) = \ln p(\symbf{x} \mid \omega_i) + \ln P(\omega_i)\]
+% Duda's book chapter 2.6 equation (47)
+\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu_i})^t \symbf{\Sigma_i}^{-1} (\symbf{x} - \symbf{\mu_i}) - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma_i}| + ln P(\omega_i)\]
+\paragraph*{Case 1: $\Sigma_i = \sigma^2 I$}
+% Duda's book chapter 2.6.1 equation (51)
+\[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
+where:
+\[\symbf{w_i} = \frac{1}{\sigma^{2}} \symbf{\mu_i}\]
+\[w_{i0} = -\frac{1}{2\sigma^2}\symbf{\mu_i}^t \symbf{\mu_i} + \ln P(\omega_i) \]
+
+\paragraph*{Case 2: $\Sigma_i = \Sigma$}
+% Duda's book chapter 2.6.2 equation (58)
+\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu_i})^t \symbf{\Sigma_i}^{-1} (\symbf{x} - \symbf{\mu_i}) - \frac{d}{2}\ln2\pi + ln P(\omega_i)\]
+\[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
+where:
+\[\symbf{w_i} = \symbf{\Sigma}^{-1} \symbf{\mu_i}\]
+\[w_{i0} = -\frac{1}{2}\symbf{\mu_i}^t \symbf{\Sigma}^{-1} \symbf{\mu_i} + \ln P(\omega_i) \]
+
+\paragraph*{Case 3: arbitrary $\Sigma_i$}
+% Duda's book chapter 2.6.3 equation (64)
+\[g_i(\symbf{x}) = \symbf{x}^t \symbf{W_i} \symbf{x} + \symbf{w_i}^t \symbf{x} + w_{i0}\]
+where:
+\[\symbf{W_i} = -\frac{1}{2}\symbf{\Sigma_i}^{-1}\]
+\[\symbf{w_i} = \symbf{\Sigma_i}^{-1} \symbf{\mu_i}\]
+\[w_{i0} = -\frac{1}{2}\symbf{\mu_i}^t \symbf{\Sigma_i}^{-1} \symbf{\mu_i} - \ln |\symbf{\Sigma_i}| + \ln P(\omega_i) \]
+
+
+\chapter{Parameter Estimation}
+
+\section{Maximum Likelihood Estimation}
+\begin{mdframed}
+	\textbf{videos}
+
+	\href{https://www.youtube.com/watch?v=sguol03tfWo&list=PL5yR0euE9N2kGEf7gqysMFq0Spoq0evNf&index=2}{Machine Learning: Maximum Likelihood Estimation}
+
+	\href{https://www.youtube.com/watch?v=XepXtl9YKwc}{Maximum Likelihood, clearly explained!!!}
+\end{mdframed}
+
+We have i.i.d. (independent and identically distributed) random samples $\symbf{X} = [\symbf{x_1}, \ldots, \symbf{x_n}]$ drawn from $p(\symbf{x} \mid \symbf{\theta})$ that follows a distribution that can described by a parameter vector $\symbf{\theta}$.
+Find $\symbf{\theta}$ that makes the observed samples the most likely (which means it maximizes $p(X \mid \theta)$).
+
+\[L_X(\theta) = p(X \mid \theta) = \prod_{k=1}^{n} p(x_k \mid \theta)\]
+
+\[\hat \theta = \underset{\theta}{argmax}\ p(X \mid \theta)\]
+
+\[\ell(\theta) = \ln L(\theta) = \sum_{k=1}^n \ln p(x_k \mid \theta)\]
+
+Necessary condition for $\hat \theta$:
+\[\frac{\partial p(X \mid \theta)}{\partial \theta} = 0\]
+or:
+\[\frac{\partial \ell(\theta)}{\partial \theta} = \sum_{k=1}^n \ln p(x_k \mid \theta) = \sum_{k=1}^n \frac{1}{p(x_k \mid \theta)} \frac{\partial p(x_k \mid \theta)}{\partial \theta} = 0\]
+
+\end{document}
