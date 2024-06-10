@@ -189,6 +189,6 @@ Find $\symbf{\theta}$ that makes the observed samples the most likely (which mea
 Necessary condition for $\hat \theta$:
 \[\frac{\partial p(X \mid \theta)}{\partial \theta} = 0\]
 or:
-\[\frac{\partial \ell(\theta)}{\partial \theta} = \sum_{k=1}^n \ln p(x_k \mid \theta) = \sum_{k=1}^n \frac{1}{p(x_k \mid \theta)} \frac{\partial p(x_k \mid \theta)}{\partial \theta} = 0\]
+\[\frac{\partial \ell(\theta)}{\partial \theta} = \sum_{k=1}^n \frac{\partial \ln p(x_k \mid \theta)}{\partial \theta} = \sum_{k=1}^n \frac{1}{p(x_k \mid \theta)} \frac{\partial p(x_k \mid \theta)}{\partial \theta} = 0\]
 
 \end{document}
