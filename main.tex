@@ -2,6 +2,7 @@
 
 \usepackage{amsmath}
 \usepackage{bookmark}
+\usepackage{float}
 \usepackage{geometry}
 \geometry{
         paper=a4paper,
@@ -17,6 +18,7 @@
 \usepackage{mdframed}
 \usepackage[normalem]{ulem}
 \usepackage{parskip}
+\usepackage{tikz}
 \usepackage{unicode-math}
 
 \title{Machine Learning Notes}
@@ -190,5 +192,165 @@ Necessary condition for $\hat \theta$:
 \[\frac{\partial p(X \mid \theta)}{\partial \theta} = 0\]
 or:
 \[\frac{\partial \ell(\theta)}{\partial \theta} = \sum_{k=1}^n \frac{\partial \ln p(x_k \mid \theta)}{\partial \theta} = \sum_{k=1}^n \frac{1}{p(x_k \mid \theta)} \frac{\partial p(x_k \mid \theta)}{\partial \theta} = 0\]
+
+\chapter{Neural Networks}
+
+\section*{The Backpropagation Algorithm}
+
+\begin{mdframed}
+	\textbf{Study Material}
+
+	\href{http://neuralnetworksanddeeplearning.com/chap2.html}{CHAPTER 2 - How the backpropagation algorithm works}
+
+	\href{https://www.youtube.com/watch?v=Ilg3gGewQ5U&list=PLZHQObOWTQDNU6R1\_67000Dx\_ZCJB-3pi&index=3}{[video] What is backpropagation really doing? | Chapter 3, Deep learning}
+
+	\href{https://www.youtube.com/watch?v=tIeHLnjs5U8&list=PLZHQObOWTQDNU6R1\_67000Dx\_ZCJB-3pi&index=4}{[video] Backpropagation calculus | Chapter 4, Deep learning}
+
+	\href{https://www.youtube.com/watch?v=dB-u77Y5a6A}{[video] Lecture 6: Backpropagation}
+
+	\href{https://www.youtube.com/watch?v=sIX\_9n-1UbM}{[video] Backpropagation Algorithm | Neural Networks}
+
+	\href{https://www.cs.toronto.edu/~rgrosse/courses/csc2541\_2022/tutorials/tut01.pdf}{Tutorial 1 - Backpropagation \& Automatic Differentiation [University of Toronto]}
+
+	\href{https://www.youtube.com/watch?v=VCT1N0EsGj0&list=PLLssT5z\_DsK\_gyrQ\_biidwvPYCRNGI3iv&index=14}{Lecture 3.4 — The backpropagation algorithm — [ Deep Learning | Geoffrey Hinton | UofT ]}
+\end{mdframed}
+
+$L$ layers.
+$r$-th layer has $k_r$ neurons.
+$k_0$ input nodes.
+
+Training samples: $(\symbf{x_n}, \symbf{y_n}),\ n=1, 2, \ldots, N$.
+
+$N$ input vectors:
+\[\symbf{x_n} = [x_{n 1}, x_{n 1}, \ldots , x_{n k_0}]^T \in \mathbb{R}^{k_0},\ n = 1, 2, \ldots, N\]
+
+$N$ target output vectors:
+\[\symbf{y_n} = [y_{n 1}, y_{n 2}, \ldots , y_{n k_L}]^T \in \mathbb{R}^{k_L},\ n = 1, 2, \ldots, N\]
+
+Output vectors: $\hat y_n$
+
+Let $\symbf{\theta_j^r}$ be the weight vector (including bias) of the $j$th neuron of the $r$th layer:
+\[\symbf{\theta_j^r} = [\theta_{j0}^r, \theta_{j1}^r, \ldots, \theta_{jk_{r-1}}^r]^T\]
+$\theta_{ji}^r$ denotes the weight from the $i$th neuron of the $(r-1)$th layer to the $j$th neuron of the $r$th layer.
+
+\[\symbf{y_n^r} \equiv [1, y_{n 1}^r, y_{n 2}^r, \ldots, y_{n k_L}^r]^T\]
+
+Iterative step of gradient descent:
+
+\[\symbf{\theta_j^r}(\text{new}) = \symbf{\theta_j^r}(\text{old}) - \mu \left.\frac{\partial J}{\partial \symbf{\theta_j^r}} \right|_{\symbf{\theta_j^r}(\text{old})}\]
+
+\subsection*{The Backpropagation Algorithm}
+
+\begin{mdframed}
+\begin{itemize}
+	\item Forward pass: compute $y_{nj}^r \forall n, j, r$, using $x_n$ and $\theta_j^r$ 
+	\item Backward pass:
+	\begin{itemize}
+		\item compute $\frac{\partial J}{\partial \theta_j^L},\ j=1, 2, \ldots, k_L$ (last layer)
+		\item For $r = L-1 \text{ to } 1$:
+		\begin{itemize}
+			\item compute $\frac{\partial J}{\partial \theta_k^r},\ k=1, 2, \ldots, k_r$, using the results of the previous layer: $\frac{\partial J}{\partial \theta_j^{r+1}},\ j=1, 2, \ldots, k_{r+1}$
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{mdframed}
+
+For the $k$-th neuron of layer $r$ we have:
+\[y_k^r = f\left((\theta_k^r)^T y^{r-1}\right),\ k=1, 2, \ldots, k_r\]
+
+in layer $r$ we have:
+\begin{figure}[H]
+\begin{tikzpicture}
+	\node[shape=circle, draw=black] (N11) at (-3, 0) {};
+	\node[shape=circle, draw=black] (N21) at (-3, -2) {};
+	\node[shape=circle, draw=black] (N31) at (-3, -4) {};
+
+	\node[shape=circle, draw=black] (f11) at (0, 0) {$f$};
+	\node[shape=circle, draw=black] (f21) at (0, -2) {$f$};
+	\node[shape=circle, draw=black] (f31) at (0, -4) {$f$};
+
+	\node[shape=circle, draw=black] (N12) at (3, 0) {};
+	\node[shape=circle, draw=black] (N22) at (3, -2) {};
+	\node[shape=circle, draw=black] (N32) at (3, -4) {};
+
+	\node[shape=circle, draw=black] (f12) at (6, 0) {$f$};
+	\node[shape=circle, draw=black] (f22) at (6, -2) {$f$};
+	\node[shape=circle, draw=black] (f32) at (6, -4) {$f$};
+
+	\node[shape=circle, draw=black] (N13) at (9, 0) {};
+	\node[shape=circle, draw=black] (N23) at (9, -2) {};
+	\node[shape=circle, draw=black] (N33) at (9, -4) {};
+
+	%\node[shape=circle, draw=black] (f13) at (12, 0) {$f$};
+	%\node[shape=circle, draw=black] (f23) at (12, 2) {$f$};
+	%\node[shape=circle, draw=black] (f33) at (12, 4) {$f$};
+
+	\node[shape=circle, draw=none] (b12) at (3, 0.75) {$b_1^r$};
+	\node[shape=circle, draw=none] (b22) at (3, -1.25) {$b_2^r$};
+	\node[shape=circle, draw=none] (b32) at (3, -3.25) {$b_3^r$};
+
+	\path [->] (N11) edge node[above] {$z_1^{r-1}$} (f11);
+	\path [->] (N21) edge node[above] {$z_2^{r-1}$} (f21);
+	\path [->] (N31) edge node[above] {$z_3^{r-1}$} (f31);
+
+	\path [->] (f11) edge node[above] {$y_{1}^{r-1} w_{11}^{r-1}$} (N12);
+	\path [->] (f21) edge node[above] {$y_{2}^{r-1} w_{22}^{r-1}$} (N22);
+	\path [->] (f31) edge node[above] {$y_{3}^{r-1} w_{33}^{r-1}$} (N32);
+	\path [->] (f11) edge node[above] {$y_{1}^{r-1} w_{21}^{r-1}$} (N22);
+	\path [->] (f31) edge node[above] {$y_{3}^{r-1} w_{23}^{r-1}$} (N22);
+
+	\path [->] (N12) edge node[above] {$z_1^r$} (f12);
+	\path [->] (N22) edge node[above] {$z_2^r$} (f22);
+	\path [->] (N32) edge node[above] {$z_3^r$} (f32);
+
+	\path [->] (f12) edge node[above] {$y_{1}^r w_{11}^r$} (N13);
+	\path [->] (f22) edge node[above] {$y_{2}^r w_{22}^r$} (N23);
+	\path [->] (f32) edge node[above] {$y_{3}^r w_{33}^r$} (N33);
+	\path [->] (f22) edge node[above] {$y_{2}^r w_{12}^r$} (N13);
+	\path [->] (f22) edge node[above] {$y_{2}^r w_{32}^r$} (N33);
+	
+	%\path [->] (N13) edge node[above] {$z_1^{r+1}$} (f13);
+	%\path [->] (N23) edge node[above] {$z_2^{r+1}$} (f23);
+	%\path [->] (N33) edge node[above] {$z_3^{r+1}$} (f33);
+
+	\path [->] (b12) edge node[above] {} (N12);
+	\path [->] (b22) edge node[above] {} (N22);
+	\path [->] (b32) edge node[above] {} (N32);
+
+\end{tikzpicture}
+\end{figure}
+
+\textbf{Forward pass - calculations for layer r}
+
+\[z_j^r = \sum_{n=1}^{k_{r-1}} \left( w_{in}^r y_n^{r-1} \right) + b_j^r,\ j=1, 2, \ldots, k_r\]
+\[y_j^r = f(z_j^r),\ j=1, 2, \ldots, k_r\]
+
+\textbf{Backward pass - calculations for layer L (last)}
+
+\[\overline{z_j^L} = \overline{y_j^L} f'(z_j^L)\]
+
+\textbf{Backward pass - calculations for layer r}
+
+(notation: $\overline{a} \equiv \frac{\partial J}{\partial a}$)
+
+Using $\overline{y^r}$ (we calculated on layer $r+1$), for $j=1, \ldots, k_r$ we calculate the following:
+
+\[\overline{z_j^r} = \overline{y_j^r} f'(z_j^r)\]
+
+\[\overline{y_j^{r-1}} = \sum_{n=1}^{k_{r}} \frac{\partial z_n^r}{\partial y_j^{r-1}} \overline{z_n^r} = \sum_{n=1}^{k_{r}} w_{jn}^r \overline{z_n^r}\]
+
+\[\overline{w_{ji}^r} = \overline{z_j^r} y_i^{r-1},\ i=1, \ldots, k_{r-1}\]
+
+\[\overline{b_j^r} = \overline{z_j^r}\]
+
+\[\overline{z_j^{r-1}} = \overline{y_j^{r-1}} f'(z_j^{r-1})\]
+
+\textbf{Multivariate Chain Rule}
+\[\frac{\partial}{\partial t} f(x(t), y(t)) = \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}\]
+\[\overline{t} = \overline{x} \frac{\partial x}{\partial t} + \overline{y} \frac{\partial y}{\partial t}\]
+
+\textbf{sigmoid function}
+\[\sigma(x) = \frac{1}{1+e^{-at}}\]
+\[\sigma'(x) = a \sigma(x) (1-\sigma(x))\]
 
 \end{document}

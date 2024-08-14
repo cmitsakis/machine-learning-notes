@@ -7,6 +7,7 @@ It also includes links to videos that provide more elaborate explanations.
 
 - Bayesian Decision Theory
 - Parameter Estimation
+- Neural Networks
 
 More topics will be added soon.
 
