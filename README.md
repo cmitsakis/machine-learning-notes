@@ -38,6 +38,7 @@ For other topics, open an issue first.
 - Pattern Recognition, S. Theodoridis, K. Koutroumbas
 - Pattern Classification, R. Duda, P. Hart, D. Stork
 - Pattern Recognition and Machine Learning, C. Bishop
+- Machine Learning: A Bayesian and Optimization Perspective, S. Theodoridis
 
 ## License
 
