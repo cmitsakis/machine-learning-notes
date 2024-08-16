@@ -81,6 +81,13 @@ product rule:
 	\operatorname{cov}(X, Y) &= E{\left[(X - E[X])(Y - E[Y])\right]} \\
 	&= E[X Y] - E[X] E[Y]
 \end{split}\]
+
+\paragraph*{Gaussian Distribution}
+\[p(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\]
+
+$D$-dimensional Gaussian:
+\[p(\symbf{x}) = \frac{1}{(2 \pi)^{D/2} |\symbf{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2}(\symbf{x}-\symbf{\mu})^T \symbf{\Sigma}^{-1} (\symbf{x}-\symbf{\mu}) \right)\]
+
 \paragraph*{Entropy}
 \[H[X] = - \sum_x p(x) \log_2 p(x)\]
 
