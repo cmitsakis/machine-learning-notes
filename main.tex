@@ -229,6 +229,35 @@ Jointly distributed random variables $\symbf{x}$, $\symbf{y}$:
 
 \subsection*{The Perceptron Algorithm}
 
+Training samples: $(y_n, \symbf{x_n}),\ n=1, 2, \ldots, N\ y \in \{-1, +1\}$.
+
+\[\exists \symbf{\theta}_*: \symbf{\theta}_*^T \symbf{x} > 0,\text{ if }\symbf{x} \in \omega_1\text{ and }\symbf{\theta}_*^T \symbf{x} < 0,\text{ if }\symbf{x} \in \omega_2\]
+
+Let $M_{\symbf{\theta}}$ be the set of the samples misclassified by $\symbf{\theta}$.
+
+\[J(\symbf{\theta}) = - \sum_{n: \symbf{x_n} \in M_{\symbf{\theta}}} y_n \symbf{\theta}^T \symbf{x_n}\]
+
+\[y_n = \begin{cases}
+	+1, & \text{if } \symbf{x} \in \omega_1 \\
+	-1, & \text{if } \symbf{x} \in \omega_2
+\end{cases}\]
+
+The perceptron rule:
+\[\symbf{\theta}^{(i)} = \symbf{\theta}^{(i-1)} + \mu_i \sum_{n: \symbf{x_n} \in M_{\symbf{\theta}^{(i-1)}}} y_n \symbf{x_n}\]
+
+Pattern-by-pattern version (reward and punishment):
+\[\symbf{\theta}^{(i)} = \begin{cases}
+	\symbf{\theta}^{(i-1)} + \mu_i y_i \symbf{x}_i, &\text{if } \symbf{x}_i \in M_{\symbf{\theta}^{(i-1)}} \\
+	\symbf{\theta}^{(i-1)}, &\text{otherwise}
+\end{cases}\]
+
+Neuron:
+\[z = \symbf{\theta}^T \symbf{x}\]
+\[f(z) = \begin{cases}
+	1, & \text{if } z > 0 \\
+	0, & \text{if } z < 0
+\end{cases}\]
+
 \subsection*{Multilayer Perceptron}
 
 \section*{The Backpropagation Algorithm}
