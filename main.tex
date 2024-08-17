@@ -203,6 +203,25 @@ or:
 
 \chapter{Linear Regression}
 
+Training data set: $(\symbf{x_n}, \symbf{y_n}),\ n=1, 2, \ldots, N$.
+
+Regression model ($\eta$: noise):
+\[y = w_0 + \symbf{w}^T \symbf{x} + \eta = [\symbf{w}^T w_0] \begin{bmatrix}\symbf{x} \\
+1\end{bmatrix} + \eta = \symbf{\theta}^T \symbf{x} + \eta\]
+
+Prediction model:
+\[\symbf{\hat y} = \symbf{\hat \theta}^T \symbf{x}\]
+
+Cost function:
+\[J(\symbf{\theta}) = \sum_{n=1}^N (y_n - \symbf{\theta}^T \symbf{x_n})^2 \]
+
+Estimate $\hat \theta$:
+\[\left( \sum_{n=1}^N \symbf{x_n}\symbf{x_n}^T \right) \symbf{\hat \theta} = \sum_{n=1}^N \symbf{x_n} y_n\]
+\[\symbf{\hat \theta} = (X^T X)^{-1} X^T \symbf{y}\]
+
+Jointly distributed random variables $\symbf{x}$, $\symbf{y}$:
+\[\symbf{\hat y} \equiv \arg\min_{\symbf{\hat y}} E\left[ \left\Vert \symbf{y} - \symbf{\hat y} \right\Vert^2 \right] \equiv \symbf{\hat g}(\symbf{x}) = E[\symbf{y} | \symbf{x}]\]
+
 
 \chapter{Neural Networks}
 
