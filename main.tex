@@ -83,9 +83,14 @@ product rule:
 \end{split}\]
 
 \paragraph*{Gaussian Distribution}
+$x \sim N(\mu, \sigma^2)$:
 \[p(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\]
 
-$D$-dimensional Gaussian:
+CDF of the standard normal distribution:
+\[\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-t^2/2} \, dt\]
+\[Q(x) = 1 - Q(-x) = 1 - \Phi(x) = \Phi(-x)\]
+
+$D$-dimensional Gaussian, $x \sim N(\mu, \Sigma)$:
 \[p(\symbf{x}) = \frac{1}{(2 \pi)^{D/2} |\symbf{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2}(\symbf{x}-\symbf{\mu})^T \symbf{\Sigma}^{-1} (\symbf{x}-\symbf{\mu}) \right)\]
 
 \paragraph*{Entropy}
