@@ -41,22 +41,22 @@ To view a copy of this license, visit \url{https://creativecommons.org/licenses/
 
 \chapter{Probability Theory}
 
-\paragraph*{Conditional probability}
+\section*{Conditional probability}
 \[P(A \mid B) = \frac{P(A \cap B)}{P(B)}\]
 
-\paragraph*{Sum rule}
+\section*{Sum rule}
 \[P(A)=\sum_n P(A \cap B_n)\]
 or, alternatively
 \[P(A)=\sum_n P(A \mid B_n) P(B_n)\]
 
-\paragraph*{Product rule}
+\section*{Product rule}
 \[P(A, B) = P(A) P(B \mid A)\]
 
-\paragraph*{Bayes theorem}
+\section*{Bayes theorem}
 \[P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}\]
 \[P(A_i \mid B) = \frac{P(B \mid A_i) P(A_i)}{\sum\limits_j P(B \mid A_j) P(A_j)}\]
 
-\paragraph*{Probability densities}
+\section*{Probability densities}
 \[P[x \in (a, b)] = \int_a^b p(x)\ dx\]
 cumulative distribution function:
 \[P(z) = \int_{-\infty}^z p(x)\ dx\]
@@ -65,13 +65,13 @@ sum rule:
 product rule:
 \[p(x, y) = p(x) p(y \mid x)\]
 
-\paragraph*{Expectation}
+\section*{Expectation}
 \[E[X] = \sum_{i=1}^\infty x_i p_i\]
 \[E[g(X)] = \sum_{x} g(x) p(x)\]
 \[E[X] = \int_{-\infty}^\infty x f(x)\ dx\]
 \[E[g(X)] = \int_{-\infty}^\infty g(x) f(x)\ dx\]
 
-\paragraph*{Variance and covariance}
+\section*{Variance and covariance}
 \[\begin{split}
 	\operatorname{Var}(X) &= E[(X - \mu)^2] \\
 	&= E[X^2] - E[X]^2 \\
@@ -82,7 +82,7 @@ product rule:
 	&= E[X Y] - E[X] E[Y]
 \end{split}\]
 
-\paragraph*{Gaussian Distribution}
+\section*{Gaussian Distribution}
 $x \sim N(\mu, \sigma^2)$:
 \[p(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\]
 
@@ -93,7 +93,7 @@ CDF of the standard normal distribution:
 $D$-dimensional Gaussian, $x \sim N(\mu, \Sigma)$:
 \[p(\symbf{x}) = \frac{1}{(2 \pi)^{D/2} |\symbf{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2}(\symbf{x}-\symbf{\mu})^T \symbf{\Sigma}^{-1} (\symbf{x}-\symbf{\mu}) \right)\]
 
-\paragraph*{Entropy}
+\section*{Entropy}
 \[H[X] = - \sum_x p(x) \log_2 p(x)\]
 
 
@@ -168,7 +168,7 @@ Decision boundary for two classes:
 	&\underbrace{- \frac{1}{2} \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{\mu}_1 + \frac{1}{2} \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{\mu}_2 + \ln \frac{P(\omega_1)}{P(\omega_2)} + \frac{1}{2} \ln \frac{|\Sigma_2|}{|\Sigma_1|}}_\text{constant} = 0
 \end{split}\]
 
-\paragraph*{Case 1: $\Sigma_i = \sigma^2 I$}
+\subsubsection*{Case 1: $\Sigma_i = \sigma^2 I$}
 % Duda's book chapter 2.6.1 equation (51)
 \[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
 where:
@@ -180,7 +180,7 @@ Decision boundary for two classes:
 \[g(\symbf{x}) = (\symbf{\mu_1} - \symbf{\mu_2})^T (\symbf{x} - \symbf{x_0}) = 0\]
 it's the perpendicular bisector of the line segment $\symbf{\mu_1} \symbf{\mu_2}$
 
-\paragraph*{Case 2: $\Sigma_i = \Sigma$}
+\subsubsection*{Case 2: $\Sigma_i = \Sigma$}
 % Duda's book chapter 2.6.2 equation (58)
 \[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu_i})^t \symbf{\Sigma_i}^{-1} (\symbf{x} - \symbf{\mu_i}) - \frac{d}{2}\ln2\pi + ln P(\omega_i)\]
 \[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
@@ -195,7 +195,7 @@ Decision boundary for two classes:
 \[\symbf{x_0} := \frac{1}{2} (\symbf{\mu_1} + \symbf{\mu_2}) - \ln \frac{P(\omega_1)}{P(\omega_2)} \frac{\symbf{\mu_1} \symbf{\mu_2}}{\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\Sigma^{-1}}^2}\]
 \[\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\Sigma^{-1}} := \sqrt{(\symbf{\mu_1} - \symbf{\mu_2})^T \Sigma^{-1} (\symbf{\mu_1} - \symbf{\mu_2})}\]
 
-\paragraph*{Case 3: arbitrary $\Sigma_i$}
+\subsubsection*{Case 3: arbitrary $\Sigma_i$}
 % Duda's book chapter 2.6.3 equation (64)
 \[g_i(\symbf{x}) = \symbf{x}^t \symbf{W_i} \symbf{x} + \symbf{w_i}^t \symbf{x} + w_{i0}\]
 where:
@@ -203,13 +203,13 @@ where:
 \[\symbf{w_i} = \symbf{\Sigma_i}^{-1} \symbf{\mu_i}\]
 \[w_{i0} = -\frac{1}{2}\symbf{\mu_i}^t \symbf{\Sigma_i}^{-1} \symbf{\mu_i} - \ln |\symbf{\Sigma_i}| + \ln P(\omega_i) \]
 
-\paragraph*{Minimum Eucledian distance classifier}
+\subsubsection*{Minimum Eucledian distance classifier}
 \begin{itemize}
 	\item equiprobable classes
 	\item Gaussian distributed with $\Sigma_i = \sigma^2 I$
 \end{itemize}
 
-\paragraph*{Minimum Mahalanobis distance classifier}
+\subsubsection*{Minimum Mahalanobis distance classifier}
 \begin{itemize}
 	\item equiprobable classes
 	\item Gaussian distributed
