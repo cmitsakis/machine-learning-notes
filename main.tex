@@ -66,21 +66,25 @@ product rule:
 \[p(x, y) = p(x) p(y \mid x)\]
 
 \section*{Expectation}
-\[\mathbb{E}[X] = \sum_{i=1}^\infty x_i p_i\]
-\[\mathbb{E}[g(X)] = \sum_{x} g(x) p(x)\]
-\[\mathbb{E}[X] = \int_{-\infty}^\infty x f(x)\ dx\]
-\[\mathbb{E}[g(X)] = \int_{-\infty}^\infty g(x) f(x)\ dx\]
+\[\mathbb{E}[X] := \sum_{i=1}^\infty x_i p_i\]
+\[\mathbb{E}[g(X)] := \sum_{x} g(x) p(x)\]
+\[\mathbb{E}[X] := \int_{-\infty}^\infty x f(x)\ dx\]
+\[\mathbb{E}[g(X)] := \int_{-\infty}^\infty g(x) f(x)\ dx\]
+\[\mathbb{E}_{x, y}\left[g(x, y)\right] = \mathbb{E}_x\left[\mathbb{E}_{y|x}[g(x, y)]\right]\]
 
 \section*{Variance and covariance}
 \[\begin{split}
-	\operatorname{Var}(X) &= \mathbb{E}[(X - \mu)^2] \\
+	\sigma_x^2 = \operatorname{Var}(X) &:= \mathbb{E}[(X - \mathbb{E}[X])^2] \\
 	&= \mathbb{E}[X^2] - \mathbb{E}[X]^2 \\
 	&= \operatorname{Cov}(X, X)
 \end{split}\]
 \[\begin{split}
-	\operatorname{cov}(X, Y) &= E{\left[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])\right]} \\
+	\operatorname{cov}(X, Y) &:= E{\left[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])\right]} \\
 	&= \mathbb{E}[X Y] - \mathbb{E}[X] \mathbb{E}[Y]
 \end{split}\]
+\[r_{xy} := \mathbb{E}[X Y]\]
+\[\Sigma_{\symbf{x}} = Cov(\symbf{x}) := \mathbb{E}\left[(\symbf{x} - \mathbb{E}[\symbf{x}])(\symbf{x} - \mathbb{E}[\symbf{x}])^T\right]\]
+\[R_{\symbf{x}} := \mathbb{E}[\symbf{x} \symbf{x}^T]\]
 
 \section*{Gaussian Distribution}
 $x \sim N(\mu, \sigma^2)$:
