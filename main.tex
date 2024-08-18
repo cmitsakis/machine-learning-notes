@@ -66,20 +66,20 @@ product rule:
 \[p(x, y) = p(x) p(y \mid x)\]
 
 \section*{Expectation}
-\[E[X] = \sum_{i=1}^\infty x_i p_i\]
-\[E[g(X)] = \sum_{x} g(x) p(x)\]
-\[E[X] = \int_{-\infty}^\infty x f(x)\ dx\]
-\[E[g(X)] = \int_{-\infty}^\infty g(x) f(x)\ dx\]
+\[\mathbb{E}[X] = \sum_{i=1}^\infty x_i p_i\]
+\[\mathbb{E}[g(X)] = \sum_{x} g(x) p(x)\]
+\[\mathbb{E}[X] = \int_{-\infty}^\infty x f(x)\ dx\]
+\[\mathbb{E}[g(X)] = \int_{-\infty}^\infty g(x) f(x)\ dx\]
 
 \section*{Variance and covariance}
 \[\begin{split}
-	\operatorname{Var}(X) &= E[(X - \mu)^2] \\
-	&= E[X^2] - E[X]^2 \\
+	\operatorname{Var}(X) &= \mathbb{E}[(X - \mu)^2] \\
+	&= \mathbb{E}[X^2] - \mathbb{E}[X]^2 \\
 	&= \operatorname{Cov}(X, X)
 \end{split}\]
 \[\begin{split}
-	\operatorname{cov}(X, Y) &= E{\left[(X - E[X])(Y - E[Y])\right]} \\
-	&= E[X Y] - E[X] E[Y]
+	\operatorname{cov}(X, Y) &= E{\left[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])\right]} \\
+	&= \mathbb{E}[X Y] - \mathbb{E}[X] \mathbb{E}[Y]
 \end{split}\]
 
 \section*{Gaussian Distribution}
@@ -261,7 +261,7 @@ Estimate $\hat \theta$:
 \[\symbf{\hat \theta} = (X^T X)^{-1} X^T \symbf{y}\]
 
 Jointly distributed random variables $\symbf{x}$, $\symbf{y}$:
-\[\symbf{\hat y} \equiv \arg\min_{\symbf{\hat y}} E\left[ \left\Vert \symbf{y} - \symbf{\hat y} \right\Vert^2 \right] \equiv \symbf{\hat g}(\symbf{x}) = E[\symbf{y} | \symbf{x}]\]
+\[\symbf{\hat y} \equiv \arg\min_{\symbf{\hat y}} E\left[ \left\Vert \symbf{y} - \symbf{\hat y} \right\Vert^2 \right] \equiv \symbf{\hat g}(\symbf{x}) = \mathbb{E}[\symbf{y} | \symbf{x}]\]
 
 
 \chapter{Neural Networks}
