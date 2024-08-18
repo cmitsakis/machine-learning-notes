@@ -148,15 +148,32 @@ decision surfaces:
 \[g_{ij}(\symbf{x}) \equiv g_i(\symbf{x}) - g_j(\symbf{x}) = 0,\ \forall i, j\ i \neq j\]
 
 \subsection*{Bayesian classification for normal distributions}
-\[g_i(\symbf{x}) = \ln p(\symbf{x} \mid \omega_i) + \ln P(\omega_i)\]
+
+\[g_i(\symbf{x}) := \ln (p(\symbf{x} \mid \omega_i) P(\omega_i)) = \ln p(\symbf{x} \mid \omega_i) + \ln P(\omega_i)\]
+
 % Duda's book chapter 2.6 equation (47)
 \[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu_i})^t \symbf{\Sigma_i}^{-1} (\symbf{x} - \symbf{\mu_i}) - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma_i}| + ln P(\omega_i)\]
+
+Decision boundary for two classes:
+% Theodoridis, 2020, p.309
+\[g(\symbf{x}) = g_1(\symbf{x}) - g_2(\symbf{x}) = 0\]
+\[\begin{split}
+	&\underbrace{\frac{1}{2} \left( \symbf{x}^T \Sigma_2^{-1} \symbf{x} - \symbf{x}^T \Sigma_1^{-1} \symbf{x} \right)}_\text{quadratic} \\
+	&\underbrace{+ \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{x} - \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{x}}_\text{linear} \\
+	&\underbrace{- \frac{1}{2} \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{\mu}_1 + \frac{1}{2} \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{\mu}_2 + \ln \frac{P(\omega_1)}{P(\omega_2)} + \frac{1}{2} \ln \frac{|\Sigma_2|}{|\Sigma_1|}}_\text{constant} = 0
+\end{split}\]
+
 \paragraph*{Case 1: $\Sigma_i = \sigma^2 I$}
 % Duda's book chapter 2.6.1 equation (51)
 \[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
 where:
 \[\symbf{w_i} = \frac{1}{\sigma^{2}} \symbf{\mu_i}\]
 \[w_{i0} = -\frac{1}{2\sigma^2}\symbf{\mu_i}^t \symbf{\mu_i} + \ln P(\omega_i) \]
+
+Decision boundary for two classes:
+% Theodoridis, 2020, p.310
+\[g(\symbf{x}) = (\symbf{\mu_1} - \symbf{\mu_2})^T (\symbf{x} - \symbf{x_0}) = 0\]
+it's the perpendicular bisector of the line segment $\symbf{\mu_1} \symbf{\mu_2}$
 
 \paragraph*{Case 2: $\Sigma_i = \Sigma$}
 % Duda's book chapter 2.6.2 equation (58)
@@ -166,6 +183,13 @@ where:
 \[\symbf{w_i} = \symbf{\Sigma}^{-1} \symbf{\mu_i}\]
 \[w_{i0} = -\frac{1}{2}\symbf{\mu_i}^t \symbf{\Sigma}^{-1} \symbf{\mu_i} + \ln P(\omega_i) \]
 
+Decision boundary for two classes:
+% Theodoridis, 2020, p.310
+\[g(\symbf{x}) = \symbf{\theta}^T (\symbf{x} - \symbf{x_0}) = 0\]
+\[\symbf{\theta} := \Sigma^{-1} (\symbf{\mu_1} - \symbf{\mu_2})\]
+\[\symbf{x_0} := \frac{1}{2} (\symbf{\mu_1} + \symbf{\mu_2}) - \ln \frac{P(\omega_1)}{P(\omega_2)} \frac{\symbf{\mu_1} \symbf{\mu_2}}{\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\Sigma^{-1}}^2}\]
+\[\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\Sigma^{-1}} := \sqrt{(\symbf{\mu_1} - \symbf{\mu_2})^T \Sigma^{-1} (\symbf{\mu_1} - \symbf{\mu_2})}\]
+
 \paragraph*{Case 3: arbitrary $\Sigma_i$}
 % Duda's book chapter 2.6.3 equation (64)
 \[g_i(\symbf{x}) = \symbf{x}^t \symbf{W_i} \symbf{x} + \symbf{w_i}^t \symbf{x} + w_{i0}\]
@@ -173,6 +197,18 @@ where:
 \[\symbf{W_i} = -\frac{1}{2}\symbf{\Sigma_i}^{-1}\]
 \[\symbf{w_i} = \symbf{\Sigma_i}^{-1} \symbf{\mu_i}\]
 \[w_{i0} = -\frac{1}{2}\symbf{\mu_i}^t \symbf{\Sigma_i}^{-1} \symbf{\mu_i} - \ln |\symbf{\Sigma_i}| + \ln P(\omega_i) \]
+
+\paragraph*{Minimum Eucledian distance classifier}
+\begin{itemize}
+	\item equiprobable classes
+	\item Gaussian distributed with $\Sigma_i = \sigma^2 I$
+\end{itemize}
+
+\paragraph*{Minimum Mahalanobis distance classifier}
+\begin{itemize}
+	\item equiprobable classes
+	\item Gaussian distributed
+\end{itemize}
 
 
 \chapter{Parameter Estimation}
