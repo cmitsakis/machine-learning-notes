@@ -127,6 +127,12 @@ equivalently:
 For many classes:
 \[P(\omega_i \mid x) > P(\omega_j \mid x),\ \forall j\ j \neq i \Rightarrow x \in \omega_i\]
 
+Error for two classes. Let $R_1$, $R_2$ be the regions where we decide $\omega_1$ and $\omega_2$ respectively.
+\[\begin{split}
+	P_e &= P(\symbf{x} \in R_1, \symbf{x} \in \omega_2) + P(\symbf{x} \in R_2, \symbf{x} \in \omega_1) \\
+	&= P(\omega_1) \int_{R_1} p(\symbf{x}|\omega_2) \, d\symbf{x} + P(\omega_2) \int_{R_2} p(\symbf{x}|\omega_1) \, d\symbf{x}
+\end{split}\]
+
 \section{Minimimum Risk Classifier}
 A Bayesian classifier that minimizes the total expected risk. It is useful for cases where some decisions are more important than others.
 
