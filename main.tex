@@ -237,19 +237,26 @@ where:
 	\href{https://www.youtube.com/watch?v=XepXtl9YKwc}{Maximum Likelihood, clearly explained!!!}
 \end{mdframed}
 
-We have i.i.d. (independent and identically distributed) random samples $\symbf{X} = [\symbf{x_1}, \ldots, \symbf{x_n}]$ drawn from $p(\symbf{x} \mid \symbf{\theta})$ that follows a distribution that can described by a parameter vector $\symbf{\theta}$.
-Find $\symbf{\theta}$ that makes the observed samples the most likely (which means it maximizes $p(X \mid \theta)$).
+We have i.i.d. (independent and identically distributed) random samples $\symbf{X} = [\symbf{x}_1, \ldots, \symbf{x}_n]$ drawn from $p(\symbf{x} \mid \symbf{\theta})$ that follows a distribution that can described by a parameter vector $\symbf{\theta}$.
+Find $\symbf{\theta}$ that makes the observed samples the most likely (which means it maximizes $p(\symbf{X} \mid \symbf{\theta})$).
 
-\[L_X(\theta) = p(X \mid \theta) = \prod_{k=1}^{n} p(x_k \mid \theta)\]
+\[\mathcal{L}(\symbf{\theta}) := p(X \mid \symbf{\theta}) = \prod_{k=1}^{n} p(\symbf{x}_k \mid \symbf{\theta})\]
 
-\[\hat \theta = \underset{\theta}{argmax}\ p(X \mid \theta)\]
+\[\ell(\symbf{\theta}) := \ln \mathcal{L}(\symbf{\theta}) = \sum_{k=1}^n \ln p(\symbf{x}_k \mid \symbf{\theta})\]
 
-\[\ell(\theta) = \ln L(\theta) = \sum_{k=1}^n \ln p(x_k \mid \theta)\]
+\[\begin{split}
+	\symbf{\hat \theta}_{\text{ML}} &= \arg\max_{\symbf{\theta}} \mathcal{L}(\symbf{\theta}) \\
+	&= \arg\max_{\symbf{\theta}} \ell(\symbf{\theta})
+\end{split}\]
 
-Necessary condition for $\hat \theta$:
-\[\frac{\partial p(X \mid \theta)}{\partial \theta} = 0\]
+Necessary condition for $\symbf{\hat \theta_{\text{ML}}}$:
+\[\left. \frac{\partial \mathcal{L}(\symbf{\theta})}{\partial \symbf{\theta}} \right|_{\symbf{\theta} = \symbf{\hat \theta}_{\text{ML}}} = 0\]
 or:
-\[\frac{\partial \ell(\theta)}{\partial \theta} = \sum_{k=1}^n \frac{\partial \ln p(x_k \mid \theta)}{\partial \theta} = \sum_{k=1}^n \frac{1}{p(x_k \mid \theta)} \frac{\partial p(x_k \mid \theta)}{\partial \theta} = 0\]
+\[\begin{split}
+	\left. \frac{\partial \ell(\symbf{\theta})}{\partial \symbf{\theta}} \right|_{\symbf{\theta} = \symbf{\hat \theta}_{\text{ML}}} &= \sum_{k=1}^n \frac{\partial \ln p(\symbf{x}_k \mid \symbf{\theta})}{\partial \symbf{\theta}} \\
+	&= \sum_{k=1}^n \left( \frac{1}{p(\symbf{x}_k \mid \symbf{\theta})} \frac{\partial p(\symbf{x}_k \mid \symbf{\theta})}{\partial \symbf{\theta}} \right) \\
+	&= 0
+\end{split}\]
 
 \section{Maximum A Posteriori Probability Estimation}
 
