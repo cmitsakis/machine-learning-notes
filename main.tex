@@ -251,6 +251,15 @@ Necessary condition for $\hat \theta$:
 or:
 \[\frac{\partial \ell(\theta)}{\partial \theta} = \sum_{k=1}^n \frac{\partial \ln p(x_k \mid \theta)}{\partial \theta} = \sum_{k=1}^n \frac{1}{p(x_k \mid \theta)} \frac{\partial p(x_k \mid \theta)}{\partial \theta} = 0\]
 
+\section{Maximum A Posteriori Probability Estimation}
+
+\[\begin{split}
+	\hat \theta_{\text{MAP}} &= \arg\max_{\symbf{\theta}} p(\symbf{\theta} \mid X) \\
+	&= \arg\max_{\symbf{\theta}} p(X \mid \symbf{\theta}) p(\symbf{\theta}) \\
+	&= \arg\max_{\symbf{\theta}} \ln p(X \mid \symbf{\theta}) + \ln p(\symbf{\theta}) \\
+	&= \arg\max_{\symbf{\theta}} \sum_{k=1}^n \left( \ln p(\symbf{x_k} \mid \symbf{\theta}) + \ln p(\symbf{\theta}) \right)
+\end{split}\]
+
 
 \chapter{Linear Regression}
 
