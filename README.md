@@ -5,8 +5,10 @@ It also includes links to videos that provide more elaborate explanations.
 
 ## Table of Contents
 
+- Probability Theory
 - Bayesian Decision Theory
 - Parameter Estimation
+- Linear Regression
 - Neural Networks
 
 More topics will be added soon.
@@ -30,8 +32,7 @@ Reporting any mistakes you notice (typos, math errors, or inaccurate explanation
 
 Fixes, improvements, and additions on the covered topics are welcome.
 
-New topics are welcome if they are covered by the books listed in [References](#references).
-For other topics, open an issue first.
+For new topics, open an issue first.
 
 ## References
 
