@@ -94,7 +94,7 @@ CDF of the standard normal distribution:
 \[\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-t^2/2} \, dt\]
 \[Q(x) = 1 - Q(-x) = 1 - \Phi(x) = \Phi(-x)\]
 
-$D$-dimensional Gaussian, $x \sim N(\mu, \Sigma)$:
+$D$-dimensional Gaussian, $\symbf{x} \sim N(\symbf{\mu}, \symbf{\Sigma})$:
 \[p(\symbf{x}) = \frac{1}{(2 \pi)^{D/2} |\symbf{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2}(\symbf{x}-\symbf{\mu})^T \symbf{\Sigma}^{-1} (\symbf{x}-\symbf{\mu}) \right)\]
 
 \section*{Entropy}
@@ -178,7 +178,7 @@ Decision boundary for two classes:
 	&\underbrace{- \frac{1}{2} \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{\mu}_1 + \frac{1}{2} \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{\mu}_2 + \ln \frac{P(\omega_1)}{P(\omega_2)} + \frac{1}{2} \ln \frac{|\Sigma_2|}{|\Sigma_1|}}_\text{constant} = 0
 \end{split}\]
 
-\subsubsection*{Case 1: $\Sigma_i = \sigma^2 I$}
+\subsubsection*{Case 1: $\symbf{\Sigma}_i = \sigma^2 \symbf{I}$}
 % Duda's book chapter 2.6.1 equation (51)
 \[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
 where:
@@ -190,7 +190,7 @@ Decision boundary for two classes:
 \[g(\symbf{x}) = (\symbf{\mu_1} - \symbf{\mu_2})^T (\symbf{x} - \symbf{x_0}) = 0\]
 it's the perpendicular bisector of the line segment $\symbf{\mu_1} \symbf{\mu_2}$
 
-\subsubsection*{Case 2: $\Sigma_i = \Sigma$}
+\subsubsection*{Case 2: $\symbf{\Sigma}_i = \symbf{\Sigma}$}
 % Duda's book chapter 2.6.2 equation (58)
 \[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu_i})^t \symbf{\Sigma_i}^{-1} (\symbf{x} - \symbf{\mu_i}) - \frac{d}{2}\ln2\pi + ln P(\omega_i)\]
 \[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
@@ -201,11 +201,11 @@ where:
 Decision boundary for two classes:
 % Theodoridis, 2020, p.310
 \[g(\symbf{x}) = \symbf{\theta}^T (\symbf{x} - \symbf{x_0}) = 0\]
-\[\symbf{\theta} := \Sigma^{-1} (\symbf{\mu_1} - \symbf{\mu_2})\]
-\[\symbf{x_0} := \frac{1}{2} (\symbf{\mu_1} + \symbf{\mu_2}) - \ln \frac{P(\omega_1)}{P(\omega_2)} \frac{\symbf{\mu_1} \symbf{\mu_2}}{\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\Sigma^{-1}}^2}\]
-\[\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\Sigma^{-1}} := \sqrt{(\symbf{\mu_1} - \symbf{\mu_2})^T \Sigma^{-1} (\symbf{\mu_1} - \symbf{\mu_2})}\]
+\[\symbf{\theta} := \symbf{\Sigma}^{-1} (\symbf{\mu_1} - \symbf{\mu_2})\]
+\[\symbf{x_0} := \frac{1}{2} (\symbf{\mu_1} + \symbf{\mu_2}) - \ln \frac{P(\omega_1)}{P(\omega_2)} \frac{\symbf{\mu_1} \symbf{\mu_2}}{\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\symbf{\Sigma}^{-1}}^2}\]
+\[\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\symbf{\Sigma}^{-1}} := \sqrt{(\symbf{\mu_1} - \symbf{\mu_2})^T \symbf{\Sigma}^{-1} (\symbf{\mu_1} - \symbf{\mu_2})}\]
 
-\subsubsection*{Case 3: arbitrary $\Sigma_i$}
+\subsubsection*{Case 3: arbitrary $\symbf{\Sigma}_i$}
 % Duda's book chapter 2.6.3 equation (64)
 \[g_i(\symbf{x}) = \symbf{x}^t \symbf{W_i} \symbf{x} + \symbf{w_i}^t \symbf{x} + w_{i0}\]
 where:
@@ -216,13 +216,13 @@ where:
 \subsubsection*{Minimum Eucledian distance classifier}
 \begin{itemize}
 	\item equiprobable classes
-	\item Gaussian distributed with $\Sigma_i = \sigma^2 I$
+	\item Gaussian distributed with $\symbf{\Sigma}_i = \sigma^2 \symbf{I}$
 \end{itemize}
 
 \subsubsection*{Minimum Mahalanobis distance classifier}
 \begin{itemize}
 	\item equiprobable classes
-	\item Gaussian distributed with $\Sigma_i = \Sigma$
+	\item Gaussian distributed with $\symbf{\Sigma}_i = \symbf{\Sigma}$
 \end{itemize}
 
 
@@ -261,7 +261,7 @@ or:
 \section{Maximum A Posteriori Probability Estimation}
 
 \[\begin{split}
-	\hat \theta_{\text{MAP}} &= \arg\max_{\symbf{\theta}} p(\symbf{\theta} \mid X) \\
+	\symbf{\hat \theta}_{\text{MAP}} &= \arg\max_{\symbf{\theta}} p(\symbf{\theta} \mid X) \\
 	&= \arg\max_{\symbf{\theta}} p(X \mid \symbf{\theta}) p(\symbf{\theta}) \\
 	&= \arg\max_{\symbf{\theta}} \ln p(X \mid \symbf{\theta}) + \ln p(\symbf{\theta}) \\
 	&= \arg\max_{\symbf{\theta}} \sum_{k=1}^n \left( \ln p(\symbf{x_k} \mid \symbf{\theta}) + \ln p(\symbf{\theta}) \right)
@@ -282,7 +282,7 @@ Prediction model:
 Cost function:
 \[J(\symbf{\theta}) = \sum_{n=1}^N (y_n - \symbf{\theta}^T \symbf{x_n})^2 \]
 
-Estimate $\hat \theta$:
+Estimate $\symbf{\hat \theta}$:
 \[\left( \sum_{n=1}^N \symbf{x_n}\symbf{x_n}^T \right) \symbf{\hat \theta} = \sum_{n=1}^N \symbf{x_n} y_n\]
 \[\symbf{\hat \theta} = (X^T X)^{-1} X^T \symbf{y}\]
 
@@ -375,20 +375,20 @@ Iterative step of gradient descent:
 
 \begin{mdframed}
 \begin{itemize}
-	\item Forward pass: compute $y_{nj}^r \forall n, j, r$, using $x_n$ and $\theta_j^r$ 
+	\item Forward pass: compute $y_{nj}^r \forall n, j, r$, using $\symbf{x}_n$ and $\symbf{\theta}_j^r$ 
 	\item Backward pass:
 	\begin{itemize}
-		\item compute $\frac{\partial J}{\partial \theta_j^L},\ j=1, 2, \ldots, k_L$ (last layer)
+		\item compute $\frac{\partial J}{\partial \symbf{\theta}_j^L},\ j=1, 2, \ldots, k_L$ (last layer)
 		\item For $r = L-1 \text{ to } 1$:
 		\begin{itemize}
-			\item compute $\frac{\partial J}{\partial \theta_k^r},\ k=1, 2, \ldots, k_r$, using the results of the previous layer: $\frac{\partial J}{\partial \theta_j^{r+1}},\ j=1, 2, \ldots, k_{r+1}$
+			\item compute $\frac{\partial J}{\partial \symbf{\theta}_k^r},\ k=1, 2, \ldots, k_r$, using the results of the previous layer: $\frac{\partial J}{\partial \symbf{\theta}_j^{r+1}},\ j=1, 2, \ldots, k_{r+1}$
 		\end{itemize}
 	\end{itemize}
 \end{itemize}
 \end{mdframed}
 
 For the $k$-th neuron of layer $r$ we have:
-\[y_k^r = f\left((\theta_k^r)^T y^{r-1}\right),\ k=1, 2, \ldots, k_r\]
+\[\symbf{y}_k^r = f\left((\symbf{\theta}_k^r)^T \symbf{y}^{r-1}\right),\ k=1, 2, \ldots, k_r\]
 
 in layer $r$ we have:
 \begin{figure}[H]
