@@ -293,6 +293,10 @@ Estimate $\symbf{\hat \theta}$:
 \[\left( \sum_{n=1}^N \symbf{x_n}\symbf{x_n}^T \right) \symbf{\hat \theta} = \sum_{n=1}^N \symbf{x_n} y_n\]
 \[\symbf{\hat \theta} = (X^T X)^{-1} X^T \symbf{y}\]
 
+Estimate $\hat \theta$ (scalar version):
+\[\left( \sum_{n=1}^N x_n^2 \right) \hat \theta = \sum_{n=1}^N x_n y_n\]
+\[\hat \theta = \frac{\sum_{n=1}^N x_n y_n}{\sum_{n=1}^N x_n^2}\]
+
 Jointly distributed random variables $\symbf{x}$, $\symbf{y}$:
 \[\symbf{\hat y} \equiv \arg\min_{\symbf{\hat y}} E\left[ \left\Vert \symbf{y} - \symbf{\hat y} \right\Vert^2 \right] \equiv \symbf{\hat g}(\symbf{x}) = \mathbb{E}[\symbf{y} | \symbf{x}]\]
 
