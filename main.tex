@@ -173,9 +173,9 @@ Decision boundary for two classes:
 % Theodoridis, 2020, p.309
 \[g(\symbf{x}) = g_1(\symbf{x}) - g_2(\symbf{x}) = 0\]
 \[\begin{split}
-	&\underbrace{\frac{1}{2} \left( \symbf{x}^T \Sigma_2^{-1} \symbf{x} - \symbf{x}^T \Sigma_1^{-1} \symbf{x} \right)}_\text{quadratic} \\
-	&\underbrace{+ \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{x} - \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{x}}_\text{linear} \\
-	&\underbrace{- \frac{1}{2} \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{\mu}_1 + \frac{1}{2} \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{\mu}_2 + \ln \frac{P(\omega_1)}{P(\omega_2)} + \frac{1}{2} \ln \frac{|\Sigma_2|}{|\Sigma_1|}}_\text{constant} = 0
+	&\underbrace{\frac{1}{2} \left( \symbf{x}^T \Sigma_2^{-1} \symbf{x} - \symbf{x}^T \Sigma_1^{-1} \symbf{x} \right)}_{\text{quadratic}} \\
+	&\underbrace{+ \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{x} - \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{x}}_{\text{linear}} \\
+	&\underbrace{- \frac{1}{2} \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{\mu}_1 + \frac{1}{2} \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{\mu}_2 + \ln \frac{P(\omega_1)}{P(\omega_2)} + \frac{1}{2} \ln \frac{|\Sigma_2|}{|\Sigma_1|}}_{\text{constant}} = 0
 \end{split}\]
 
 \subsubsection*{Case 1: $\symbf{\Sigma}_i = \sigma^2 \symbf{I}$}
