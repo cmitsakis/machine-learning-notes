@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass{article}
 
 \usepackage{amsmath}
 \usepackage{bookmark}
@@ -6,16 +6,14 @@
 \usepackage{geometry}
 \geometry{
         paper=a4paper,
-        top=2cm,
-        bottom=2cm,
-        left=1.5cm,
-        right=1.5cm,
-        headheight=0.75cm,
-        footskip=1.5cm,
-        headsep=0.75cm,
+        top=1.2cm,
+        bottom=1.2cm,
+        left=1cm,
+        right=1cm,
 }
 \usepackage{hyperref}
 \usepackage{mdframed}
+\usepackage{multicol}
 \usepackage[normalem]{ulem}
 \usepackage{parskip}
 \usepackage{tikz}
@@ -39,24 +37,27 @@ is licensed under \textit{Creative Commons Attribution-ShareAlike 4.0 Internatio
 To view a copy of this license, visit \url{https://creativecommons.org/licenses/by-sa/4.0/}
 
 
-\chapter{Probability Theory}
+\begin{multicols}{2}
 
-\section*{Conditional probability}
+
+\section{Probability Theory}
+
+\subsection{Conditional probability}
 \[P(A \mid B) = \frac{P(A \cap B)}{P(B)}\]
 
-\section*{Sum rule}
+\subsection{Sum rule}
 \[P(A)=\sum_n P(A \cap B_n)\]
 or, alternatively
 \[P(A)=\sum_n P(A \mid B_n) P(B_n)\]
 
-\section*{Product rule}
+\subsection{Product rule}
 \[P(A, B) = P(A) P(B \mid A)\]
 
-\section*{Bayes theorem}
+\subsection{Bayes theorem}
 \[P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}\]
 \[P(A_i \mid B) = \frac{P(B \mid A_i) P(A_i)}{\sum\limits_j P(B \mid A_j) P(A_j)}\]
 
-\section*{Probability densities}
+\subsection{Probability densities}
 \[P[x \in (a, b)] = \int_a^b p(x)\ dx\]
 cumulative distribution function:
 \[P(z) = \int_{-\infty}^z p(x)\ dx\]
@@ -65,14 +66,14 @@ sum rule:
 product rule:
 \[p(x, y) = p(x) p(y \mid x)\]
 
-\section*{Expectation}
+\subsection{Expectation}
 \[\mathbb{E}[X] := \sum_{i=1}^\infty x_i p_i\]
 \[\mathbb{E}[g(X)] := \sum_{x} g(x) p(x)\]
 \[\mathbb{E}[X] := \int_{-\infty}^\infty x f(x)\ dx\]
 \[\mathbb{E}[g(X)] := \int_{-\infty}^\infty g(x) f(x)\ dx\]
 \[\mathbb{E}_{x, y}\left[g(x, y)\right] = \mathbb{E}_x\left[\mathbb{E}_{y|x}[g(x, y)]\right]\]
 
-\section*{Variance and covariance}
+\subsection{Variance and covariance}
 \[\begin{split}
 	\sigma_x^2 = \operatorname{Var}(X) &:= \mathbb{E}[(X - \mathbb{E}[X])^2] \\
 	&= \mathbb{E}[X^2] - \mathbb{E}[X]^2 \\
@@ -86,7 +87,7 @@ product rule:
 \[\Sigma_{\symbf{x}} = Cov(\symbf{x}) := \mathbb{E}\left[(\symbf{x} - \mathbb{E}[\symbf{x}])(\symbf{x} - \mathbb{E}[\symbf{x}])^T\right]\]
 \[R_{\symbf{x}} := \mathbb{E}[\symbf{x} \symbf{x}^T]\]
 
-\section*{Gaussian Distribution}
+\subsection{Gaussian Distribution}
 $x \sim N(\mu, \sigma^2)$:
 \[p(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\]
 
@@ -97,11 +98,11 @@ CDF of the standard normal distribution:
 $D$-dimensional Gaussian, $\symbf{x} \sim N(\symbf{\mu}, \symbf{\Sigma})$:
 \[p(\symbf{x}) = \frac{1}{(2 \pi)^{D/2} |\symbf{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2}(\symbf{x}-\symbf{\mu})^T \symbf{\Sigma}^{-1} (\symbf{x}-\symbf{\mu}) \right)\]
 
-\section*{Entropy}
+\subsection{Entropy}
 \[H[X] = - \sum_x p(x) \log_2 p(x)\]
 
 
-\chapter{Bayesian Decision Theory}
+\section{Bayesian Decision Theory}
 
 \[P(\omega_i \mid x) = \frac{P(x \mid \omega_i) P(\omega_i)}{P(x)} = \frac{P(x \mid \omega_i) P(\omega_i)}{\sum\limits_j P(x \mid \omega_j) P(\omega_j)}\]
 
@@ -113,7 +114,7 @@ $D$-dimensional Gaussian, $\symbf{x} \sim N(\symbf{\mu}, \symbf{\Sigma})$:
 	\href{https://www.youtube.com/watch?v=4JscUHGWaB4}{Machine Learning: Bayes Decision Theory}
 \end{mdframed}
 
-\section{Minimum Error Classifier (MAP)}
+\subsection{Minimum Error Classifier (MAP)}
 A Bayesian classifier that minimizes the classification error probability.
 
 For two classes:
@@ -133,10 +134,10 @@ Error for two classes. Let $R_1$, $R_2$ be the regions where we decide $\omega_1
 	&= P(\omega_2) \int_{R_1} p(\symbf{x}|\omega_2) \, d\symbf{x} + P(\omega_1) \int_{R_2} p(\symbf{x}|\omega_1) \, d\symbf{x}
 \end{split}\]
 
-\section{Minimimum Risk Classifier}
+\subsection{Minimimum Risk Classifier}
 A Bayesian classifier that minimizes the total expected risk. It is useful for cases where some decisions are more important than others.
 
-\subsection*{for two classes:}
+\subsubsection*{for two classes:}
 \[L = \begin{bmatrix}
 	\lambda_{11} & \lambda_{12} \\
 	\lambda_{21} & \lambda_{22}
@@ -158,7 +159,7 @@ if $\lambda_{11} = \lambda_{22} = 0$:
 
 \[x \in \omega_1 (\omega_2) \text{ if } \frac{p(x \mid \omega_1)}{p(x \mid \omega_2)} > (<) \frac{P(\omega_2)}{P(\omega_1)}\frac{\lambda_{21}-\lambda_{22}}{\lambda_{12}-\lambda_{11}}\]
 
-\section{Discriminant functions}
+\subsection{Discriminant functions}
 $g_i (\symbf{x}) \equiv f(P(\omega_i \mid \symbf{x}))$ where $f$ is a monotonically increasing function.
 
 \[g_i(\symbf{x}) > g_j(\symbf{x}),\ \forall j\ j \neq i \Rightarrow x \in \omega_i\]
@@ -166,7 +167,7 @@ $g_i (\symbf{x}) \equiv f(P(\omega_i \mid \symbf{x}))$ where $f$ is a monotonica
 decision surfaces:
 \[g_{ij}(\symbf{x}) \equiv g_i(\symbf{x}) - g_j(\symbf{x}) = 0,\ \forall i, j\ i \neq j\]
 
-\subsection*{Bayesian classification for normal distributions}
+\subsubsection*{Bayesian classification for normal distributions}
 
 \[g_i(\symbf{x}) := \ln (p(\symbf{x} \mid \omega_i) P(\omega_i)) = \ln p(\symbf{x} \mid \omega_i) + \ln P(\omega_i)\]
 
@@ -182,7 +183,7 @@ Decision boundary for two classes:
 	&\underbrace{- \frac{1}{2} \symbf{\mu}_1^T \Sigma_1^{-1} \symbf{\mu}_1 + \frac{1}{2} \symbf{\mu}_2^T \Sigma_2^{-1} \symbf{\mu}_2 + \ln \frac{P(\omega_1)}{P(\omega_2)} + \frac{1}{2} \ln \frac{|\Sigma_2|}{|\Sigma_1|}}_{\text{constant}} = 0
 \end{split}\]
 
-\subsubsection*{Case 1: $\symbf{\Sigma}_i = \sigma^2 \symbf{I}$}
+\paragraph{Case 1: $\symbf{\Sigma}_i = \sigma^2 \symbf{I}$}
 % Duda's book chapter 2.6.1 equation (51)
 \[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
 where:
@@ -194,7 +195,7 @@ Decision boundary for two classes:
 \[g(\symbf{x}) = (\symbf{\mu_1} - \symbf{\mu_2})^T (\symbf{x} - \symbf{x_0}) = 0\]
 it's the perpendicular bisector of the line segment $\symbf{\mu_1} \symbf{\mu_2}$
 
-\subsubsection*{Case 2: $\symbf{\Sigma}_i = \symbf{\Sigma}$}
+\paragraph{Case 2: $\symbf{\Sigma}_i = \symbf{\Sigma}$}
 % Duda's book chapter 2.6.2 equation (58)
 \[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu_i})^t \symbf{\Sigma_i}^{-1} (\symbf{x} - \symbf{\mu_i}) - \frac{d}{2}\ln2\pi + ln P(\omega_i)\]
 \[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
@@ -209,7 +210,7 @@ Decision boundary for two classes:
 \[\symbf{x_0} := \frac{1}{2} (\symbf{\mu_1} + \symbf{\mu_2}) - \ln \frac{P(\omega_1)}{P(\omega_2)} \frac{\symbf{\mu_1} \symbf{\mu_2}}{\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\symbf{\Sigma}^{-1}}^2}\]
 \[\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\symbf{\Sigma}^{-1}} := \sqrt{(\symbf{\mu_1} - \symbf{\mu_2})^T \symbf{\Sigma}^{-1} (\symbf{\mu_1} - \symbf{\mu_2})}\]
 
-\subsubsection*{Case 3: arbitrary $\symbf{\Sigma}_i$}
+\paragraph{Case 3: arbitrary $\symbf{\Sigma}_i$}
 % Duda's book chapter 2.6.3 equation (64)
 \[g_i(\symbf{x}) = \symbf{x}^t \symbf{W_i} \symbf{x} + \symbf{w_i}^t \symbf{x} + w_{i0}\]
 where:
@@ -217,25 +218,25 @@ where:
 \[\symbf{w_i} = \symbf{\Sigma_i}^{-1} \symbf{\mu_i}\]
 \[w_{i0} = -\frac{1}{2}\symbf{\mu_i}^t \symbf{\Sigma_i}^{-1} \symbf{\mu_i} - \ln |\symbf{\Sigma_i}| + \ln P(\omega_i) \]
 
-\subsubsection*{Minimum Eucledian distance classifier}
+\paragraph{Minimum Eucledian distance classifier}
 \begin{itemize}
 	\item equiprobable classes
 	\item Gaussian distributed with $\symbf{\Sigma}_i = \sigma^2 \symbf{I}$
 \end{itemize}
 
-\subsubsection*{Minimum Mahalanobis distance classifier}
+\paragraph{Minimum Mahalanobis distance classifier}
 \begin{itemize}
 	\item equiprobable classes
 	\item Gaussian distributed with $\symbf{\Sigma}_i = \symbf{\Sigma}$
 \end{itemize}
 
-\section{Naive Bayes Classifier}
+\subsection{Naive Bayes Classifier}
 \[p(\symbf{x} \mid \omega_i) = \prod_{k} p(x_k \mid \omega_i)\]
 
 
-\chapter{Parameter Estimation}
+\section{Parameter Estimation}
 
-\section{Maximum Likelihood Estimation}
+\subsection{Maximum Likelihood Estimation}
 \begin{mdframed}
 	\textbf{videos}
 
@@ -265,7 +266,7 @@ or:
 	&= 0
 \end{split}\]
 
-\section{Maximum A Posteriori Probability Estimation}
+\subsection{Maximum A Posteriori Probability Estimation}
 
 \[\begin{split}
 	\symbf{\hat \theta}_{\text{MAP}} &= \arg\max_{\symbf{\theta}} p(\symbf{\theta} \mid X) \\
@@ -275,7 +276,7 @@ or:
 \end{split}\]
 
 
-\chapter{Linear Regression}
+\section{Linear Regression}
 
 Training data set: $(\symbf{x_n}, \symbf{y_n}),\ n=1, 2, \ldots, N$.
 
@@ -301,11 +302,11 @@ Jointly distributed random variables $\symbf{x}$, $\symbf{y}$:
 \[\symbf{\hat y} \equiv \arg\min_{\symbf{\hat y}} E\left[ \left\Vert \symbf{y} - \symbf{\hat y} \right\Vert^2 \right] \equiv \symbf{\hat g}(\symbf{x}) = \mathbb{E}[\symbf{y} | \symbf{x}]\]
 
 
-\chapter{Neural Networks}
+\section{Neural Networks}
 
-\section*{The Perceptron}
+\subsection{The Perceptron}
 
-\subsection*{The Perceptron Algorithm}
+\subsubsection*{The Perceptron Algorithm}
 
 Training samples: $(y_n, \symbf{x_n}),\ n=1, 2, \ldots, N\ y \in \{-1, +1\}$.
 
@@ -336,9 +337,9 @@ Neuron:
 	0, & \text{if } z < 0
 \end{cases}\]
 
-\subsection*{Multilayer Perceptron}
+\subsubsection*{Multilayer Perceptron}
 
-\section*{The Backpropagation Algorithm}
+\subsection{The Backpropagation Algorithm}
 
 \begin{mdframed}
 	\textbf{Study Material}
@@ -382,7 +383,7 @@ Iterative step of gradient descent:
 
 \[\symbf{\theta_j^r}(\text{new}) = \symbf{\theta_j^r}(\text{old}) - \mu \left.\frac{\partial J}{\partial \symbf{\theta_j^r}} \right|_{\symbf{\theta_j^r}(\text{old})}\]
 
-\subsection*{The Backpropagation Algorithm}
+\subsubsection*{The Backpropagation Algorithm}
 
 \begin{mdframed}
 \begin{itemize}
@@ -403,6 +404,7 @@ For the $k$-th neuron of layer $r$ we have:
 
 in layer $r$ we have:
 \begin{figure}[H]
+\resizebox{\columnwidth}{!}{
 \begin{tikzpicture}
 	\node[shape=circle, draw=black] (N11) at (-3, 0) {};
 	\node[shape=circle, draw=black] (N21) at (-3, -2) {};
@@ -461,6 +463,7 @@ in layer $r$ we have:
 	\path [->] (b32) edge node[above] {} (N32);
 
 \end{tikzpicture}
+}
 \end{figure}
 
 \textbf{Forward pass - calculations for layer r}
@@ -495,5 +498,8 @@ Using $\overline{y^r}$ (we calculated on layer $r+1$), for $j=1, \ldots, k_r$ we
 \textbf{sigmoid function}
 \[\sigma(x) = \frac{1}{1+e^{-at}}\]
 \[\sigma'(x) = a \sigma(x) (1-\sigma(x))\]
+
+
+\end{multicols}
 
 \end{document}
