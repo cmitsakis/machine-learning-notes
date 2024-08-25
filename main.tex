@@ -150,7 +150,11 @@ usually:
 \[l_1 = \lambda_{11} p(x \mid \omega_1)P(\omega_1) + \lambda_{21} p(x \mid \omega_2)P(\omega_2)\]
 \[l_2 = \lambda_{12} p(x \mid \omega_1)P(\omega_1) + \lambda_{22} p(x \mid \omega_2)P(\omega_2)\]
 
-\[x \in \omega_1 \text{ if } l_1 < l_2 \Leftrightarrow (\lambda_{21}-\lambda_{22}) p(x \mid \omega_2)P(\omega_2) < (\lambda_{12}-\lambda_{11}) p(x \mid \omega_1)P(\omega_1)\]
+$x \in \omega_1$ if:
+\[l_1 < l_2\]
+\[(\lambda_{21}-\lambda_{22}) P(\omega_2) p(x \mid \omega_2) < (\lambda_{12}-\lambda_{11}) P(\omega_1) p(x \mid \omega_1)\]
+if $\lambda_{11} = \lambda_{22} = 0$:
+\[\lambda_{21} P(\omega_2) p(x \mid \omega_2) < \lambda_{12} P(\omega_1) p(x \mid \omega_1)\]
 
 \[x \in \omega_1 (\omega_2) \text{ if } \frac{p(x \mid \omega_1)}{p(x \mid \omega_2)} > (<) \frac{P(\omega_2)}{P(\omega_1)}\frac{\lambda_{21}-\lambda_{22}}{\lambda_{12}-\lambda_{11}}\]
 
