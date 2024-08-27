@@ -172,7 +172,7 @@ decision surfaces:
 \[g_i(\symbf{x}) := \ln (p(\symbf{x} \mid \omega_i) P(\omega_i)) = \ln p(\symbf{x} \mid \omega_i) + \ln P(\omega_i)\]
 
 % Duda's book chapter 2.6 equation (47)
-\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu}_i)^t \symbf{\Sigma}_i^{-1} (\symbf{x} - \symbf{\mu}_i) - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma}_i| + ln P(\omega_i)\]
+\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu}_i)^T \symbf{\Sigma}_i^{-1} (\symbf{x} - \symbf{\mu}_i) - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma}_i| + ln P(\omega_i)\]
 
 Decision boundary for two classes:
 % Theodoridis, 2020, p.309
@@ -185,10 +185,10 @@ Decision boundary for two classes:
 
 \paragraph{Case 1: $\symbf{\Sigma}_i = \sigma^2 \symbf{I}$}
 % Duda's book chapter 2.6.1 equation (51)
-\[g_i(\symbf{x}) = \symbf{w}_i^t \symbf{x} + w_{i0}\]
+\[g_i(\symbf{x}) = \symbf{w}_i^T \symbf{x} + w_{i0}\]
 where:
 \[\symbf{w}_i = \frac{1}{\sigma^{2}} \symbf{\mu}_i\]
-\[w_{i0} = -\frac{1}{2\sigma^2}\symbf{\mu}_i^t \symbf{\mu}_i + \ln P(\omega_i) \]
+\[w_{i0} = -\frac{1}{2\sigma^2}\symbf{\mu}_i^T \symbf{\mu}_i + \ln P(\omega_i) \]
 
 Decision boundary for two classes:
 % Theodoridis, 2020, p.310
@@ -197,11 +197,11 @@ it's the perpendicular bisector of the line segment $\symbf{\mu}_1 \symbf{\mu}_2
 
 \paragraph{Case 2: $\symbf{\Sigma}_i = \symbf{\Sigma}$}
 % Duda's book chapter 2.6.2 equation (58)
-\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu}_i)^t \symbf{\Sigma}_i^{-1} (\symbf{x} - \symbf{\mu}_i) - \frac{d}{2}\ln2\pi + ln P(\omega_i)\]
-\[g_i(\symbf{x}) = \symbf{w}_i^t \symbf{x} + w_{i0}\]
+\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu}_i)^T \symbf{\Sigma}_i^{-1} (\symbf{x} - \symbf{\mu}_i) - \frac{d}{2}\ln2\pi + ln P(\omega_i)\]
+\[g_i(\symbf{x}) = \symbf{w}_i^T \symbf{x} + w_{i0}\]
 where:
 \[\symbf{w}_i = \symbf{\Sigma}^{-1} \symbf{\mu}_i\]
-\[w_{i0} = -\frac{1}{2}\symbf{\mu}_i^t \symbf{\Sigma}^{-1} \symbf{\mu}_i + \ln P(\omega_i) \]
+\[w_{i0} = -\frac{1}{2}\symbf{\mu}_i^T \symbf{\Sigma}^{-1} \symbf{\mu}_i + \ln P(\omega_i) \]
 
 Decision boundary for two classes:
 % Theodoridis, 2020, p.310
@@ -212,11 +212,11 @@ Decision boundary for two classes:
 
 \paragraph{Case 3: arbitrary $\symbf{\Sigma}_i$}
 % Duda's book chapter 2.6.3 equation (64)
-\[g_i(\symbf{x}) = \symbf{x}^t \symbf{W}_i \symbf{x} + \symbf{w}_i^t \symbf{x} + w_{i0}\]
+\[g_i(\symbf{x}) = \symbf{x}^T \symbf{W}_i \symbf{x} + \symbf{w}_i^T \symbf{x} + w_{i0}\]
 where:
 \[\symbf{W}_i = -\frac{1}{2}\symbf{\Sigma}_i^{-1}\]
 \[\symbf{w}_i = \symbf{\Sigma}_i^{-1} \symbf{\mu}_i\]
-\[w_{i0} = -\frac{1}{2}\symbf{\mu}_i^t \symbf{\Sigma}_i^{-1} \symbf{\mu}_i - \ln |\symbf{\Sigma}_i| + \ln P(\omega_i) \]
+\[w_{i0} = -\frac{1}{2}\symbf{\mu}_i^T \symbf{\Sigma}_i^{-1} \symbf{\mu}_i - \ln |\symbf{\Sigma}_i| + \ln P(\omega_i) \]
 
 \paragraph{Minimum Eucledian distance classifier}
 \begin{itemize}
