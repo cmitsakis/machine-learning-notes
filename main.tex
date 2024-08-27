@@ -118,15 +118,17 @@ $D$-dimensional Gaussian, $\symbf{x} \sim N(\symbf{\mu}, \symbf{\Sigma})$:
 A Bayesian classifier that minimizes the classification error probability.
 
 For two classes:
-\[P(\omega_1 \mid x) > P(\omega_2 \mid x) \Rightarrow x \in \omega_1\]
-\[P(\omega_2 \mid x) > P(\omega_1 \mid x) \Rightarrow x \in \omega_2\]
-
-equivalently:
-\[P(x \mid \omega_1)P(\omega_1) > P(x \mid \omega_2)P(\omega_2) \Rightarrow x \in \omega_1\]
-\[P(x \mid \omega_2)P(\omega_2) > P(x \mid \omega_1)P(\omega_1) \Rightarrow x \in \omega_2\]
+\[\begin{split}
+	x \in \omega_1 &\Leftrightarrow P(\omega_1 \mid x) > P(\omega_2 \mid x) \\
+	&\Leftrightarrow P(x \mid \omega_1)P(\omega_1) > P(x \mid \omega_2)P(\omega_2)
+\end{split}\]
+\[\begin{split}
+	x \in \omega_2 &\Leftrightarrow P(\omega_1 \mid x) < P(\omega_2 \mid x) \\
+	&\Leftrightarrow P(x \mid \omega_1)P(\omega_1) < P(x \mid \omega_2)P(\omega_2)
+\end{split}\]
 
 For many classes:
-\[P(\omega_i \mid x) > P(\omega_j \mid x),\ \forall j\ j \neq i \Rightarrow x \in \omega_i\]
+\[x \in \omega_i \Leftrightarrow P(\omega_i \mid x) > P(\omega_j \mid x),\ \forall j\ j \neq i\]
 
 Error for two classes. Let $R_1$, $R_2$ be the regions where we decide $\omega_1$ and $\omega_2$ respectively.
 \[\begin{split}
