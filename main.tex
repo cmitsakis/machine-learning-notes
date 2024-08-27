@@ -169,10 +169,14 @@ decision surfaces:
 
 \subsubsection*{Bayesian classification for normal distributions}
 
-\[g_i(\symbf{x}) := \ln (p(\symbf{x} \mid \omega_i) P(\omega_i)) = \ln p(\symbf{x} \mid \omega_i) + \ln P(\omega_i)\]
-
 % Duda's book chapter 2.6 equation (47)
-\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu}_i)^T \symbf{\Sigma}_i^{-1} (\symbf{x} - \symbf{\mu}_i) - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma}_i| + ln P(\omega_i)\]
+% Theodoridis and Koutroumbas, 2008, p.24
+\[\begin{split}
+	g_i(\symbf{x}) &:= \ln (p(\symbf{x} \mid \omega_i) P(\omega_i)) = \ln p(\symbf{x} \mid \omega_i) + \ln P(\omega_i) \\
+	&= -\frac{1}{2} (\symbf{x} - \symbf{\mu}_i)^T \symbf{\Sigma}_i^{-1} (\symbf{x} - \symbf{\mu}_i) - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma}_i| + ln P(\omega_i) \\
+	&= - \frac{1}{2} \symbf{x}^T \symbf{\Sigma}_i^{-1} \symbf{x} + \frac{1}{2} \symbf{x}^T \symbf{\Sigma}_i^{-1} \symbf{\mu}_i - \frac{1}{2} \symbf{\mu}_i^T \symbf{\Sigma}_i^{-1} \symbf{\mu}_i + \frac{1}{2} \symbf{\mu}_i^T \symbf{\Sigma}_i^{-1} \symbf{x} \\
+	&\quad\, - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma}_i| + ln P(\omega_i)
+\end{split}\]
 
 Decision boundary for two classes:
 % Theodoridis, 2020, p.309
