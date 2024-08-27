@@ -172,7 +172,7 @@ decision surfaces:
 \[g_i(\symbf{x}) := \ln (p(\symbf{x} \mid \omega_i) P(\omega_i)) = \ln p(\symbf{x} \mid \omega_i) + \ln P(\omega_i)\]
 
 % Duda's book chapter 2.6 equation (47)
-\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu_i})^t \symbf{\Sigma_i}^{-1} (\symbf{x} - \symbf{\mu_i}) - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma_i}| + ln P(\omega_i)\]
+\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu}_i)^t \symbf{\Sigma}_i^{-1} (\symbf{x} - \symbf{\mu}_i) - \frac{d}{2}\ln2\pi - \frac{1}{2} ln |\symbf{\Sigma}_i| + ln P(\omega_i)\]
 
 Decision boundary for two classes:
 % Theodoridis, 2020, p.309
@@ -185,38 +185,38 @@ Decision boundary for two classes:
 
 \paragraph{Case 1: $\symbf{\Sigma}_i = \sigma^2 \symbf{I}$}
 % Duda's book chapter 2.6.1 equation (51)
-\[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
+\[g_i(\symbf{x}) = \symbf{w}_i^t \symbf{x} + w_{i0}\]
 where:
-\[\symbf{w_i} = \frac{1}{\sigma^{2}} \symbf{\mu_i}\]
-\[w_{i0} = -\frac{1}{2\sigma^2}\symbf{\mu_i}^t \symbf{\mu_i} + \ln P(\omega_i) \]
+\[\symbf{w}_i = \frac{1}{\sigma^{2}} \symbf{\mu}_i\]
+\[w_{i0} = -\frac{1}{2\sigma^2}\symbf{\mu}_i^t \symbf{\mu}_i + \ln P(\omega_i) \]
 
 Decision boundary for two classes:
 % Theodoridis, 2020, p.310
-\[g(\symbf{x}) = (\symbf{\mu_1} - \symbf{\mu_2})^T (\symbf{x} - \symbf{x_0}) = 0\]
-it's the perpendicular bisector of the line segment $\symbf{\mu_1} \symbf{\mu_2}$
+\[g(\symbf{x}) = (\symbf{\mu}_1 - \symbf{\mu}_2)^T (\symbf{x} - \symbf{x}_0) = 0\]
+it's the perpendicular bisector of the line segment $\symbf{\mu}_1 \symbf{\mu}_2$
 
 \paragraph{Case 2: $\symbf{\Sigma}_i = \symbf{\Sigma}$}
 % Duda's book chapter 2.6.2 equation (58)
-\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu_i})^t \symbf{\Sigma_i}^{-1} (\symbf{x} - \symbf{\mu_i}) - \frac{d}{2}\ln2\pi + ln P(\omega_i)\]
-\[g_i(\symbf{x}) = \symbf{w_i}^t \symbf{x} + w_{i0}\]
+\[g_i(\symbf{x}) = -\frac{1}{2} (\symbf{x} - \symbf{\mu}_i)^t \symbf{\Sigma}_i^{-1} (\symbf{x} - \symbf{\mu}_i) - \frac{d}{2}\ln2\pi + ln P(\omega_i)\]
+\[g_i(\symbf{x}) = \symbf{w}_i^t \symbf{x} + w_{i0}\]
 where:
-\[\symbf{w_i} = \symbf{\Sigma}^{-1} \symbf{\mu_i}\]
-\[w_{i0} = -\frac{1}{2}\symbf{\mu_i}^t \symbf{\Sigma}^{-1} \symbf{\mu_i} + \ln P(\omega_i) \]
+\[\symbf{w}_i = \symbf{\Sigma}^{-1} \symbf{\mu}_i\]
+\[w_{i0} = -\frac{1}{2}\symbf{\mu}_i^t \symbf{\Sigma}^{-1} \symbf{\mu}_i + \ln P(\omega_i) \]
 
 Decision boundary for two classes:
 % Theodoridis, 2020, p.310
-\[g(\symbf{x}) = \symbf{\theta}^T (\symbf{x} - \symbf{x_0}) = 0\]
-\[\symbf{\theta} := \symbf{\Sigma}^{-1} (\symbf{\mu_1} - \symbf{\mu_2})\]
-\[\symbf{x_0} := \frac{1}{2} (\symbf{\mu_1} + \symbf{\mu_2}) - \ln \frac{P(\omega_1)}{P(\omega_2)} \frac{\symbf{\mu_1} \symbf{\mu_2}}{\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\symbf{\Sigma}^{-1}}^2}\]
-\[\left\Vert \symbf{\mu_1} - \symbf{\mu_2} \right\Vert_{\symbf{\Sigma}^{-1}} := \sqrt{(\symbf{\mu_1} - \symbf{\mu_2})^T \symbf{\Sigma}^{-1} (\symbf{\mu_1} - \symbf{\mu_2})}\]
+\[g(\symbf{x}) = \symbf{\theta}^T (\symbf{x} - \symbf{x}_0) = 0\]
+\[\symbf{\theta} := \symbf{\Sigma}^{-1} (\symbf{\mu}_1 - \symbf{\mu}_2)\]
+\[\symbf{x}_0 := \frac{1}{2} (\symbf{\mu}_1 + \symbf{\mu}_2) - \ln \frac{P(\omega_1)}{P(\omega_2)} \frac{\symbf{\mu}_1 \symbf{\mu}_2}{\left\Vert \symbf{\mu}_1 - \symbf{\mu}_2 \right\Vert_{\symbf{\Sigma}^{-1}}^2}\]
+\[\left\Vert \symbf{\mu}_1 - \symbf{\mu}_2 \right\Vert_{\symbf{\Sigma}^{-1}} := \sqrt{(\symbf{\mu}_1 - \symbf{\mu}_2)^T \symbf{\Sigma}^{-1} (\symbf{\mu}_1 - \symbf{\mu}_2)}\]
 
 \paragraph{Case 3: arbitrary $\symbf{\Sigma}_i$}
 % Duda's book chapter 2.6.3 equation (64)
-\[g_i(\symbf{x}) = \symbf{x}^t \symbf{W_i} \symbf{x} + \symbf{w_i}^t \symbf{x} + w_{i0}\]
+\[g_i(\symbf{x}) = \symbf{x}^t \symbf{W}_i \symbf{x} + \symbf{w}_i^t \symbf{x} + w_{i0}\]
 where:
-\[\symbf{W_i} = -\frac{1}{2}\symbf{\Sigma_i}^{-1}\]
-\[\symbf{w_i} = \symbf{\Sigma_i}^{-1} \symbf{\mu_i}\]
-\[w_{i0} = -\frac{1}{2}\symbf{\mu_i}^t \symbf{\Sigma_i}^{-1} \symbf{\mu_i} - \ln |\symbf{\Sigma_i}| + \ln P(\omega_i) \]
+\[\symbf{W}_i = -\frac{1}{2}\symbf{\Sigma}_i^{-1}\]
+\[\symbf{w}_i = \symbf{\Sigma}_i^{-1} \symbf{\mu}_i\]
+\[w_{i0} = -\frac{1}{2}\symbf{\mu}_i^t \symbf{\Sigma}_i^{-1} \symbf{\mu}_i - \ln |\symbf{\Sigma}_i| + \ln P(\omega_i) \]
 
 \paragraph{Minimum Eucledian distance classifier}
 \begin{itemize}
@@ -257,7 +257,7 @@ Find $\symbf{\theta}$ that makes the observed samples the most likely (which mea
 	&= \arg\max_{\symbf{\theta}} \ell(\symbf{\theta})
 \end{split}\]
 
-Necessary condition for $\symbf{\hat \theta_{\text{ML}}}$:
+Necessary condition for $\symbf{\hat \theta}_{\text{ML}}$:
 \[\left. \frac{\partial \mathcal{L}(\symbf{\theta})}{\partial \symbf{\theta}} \right|_{\symbf{\theta} = \symbf{\hat \theta}_{\text{ML}}} = 0\]
 or:
 \[\begin{split}
@@ -272,13 +272,13 @@ or:
 	\symbf{\hat \theta}_{\text{MAP}} &= \arg\max_{\symbf{\theta}} p(\symbf{\theta} \mid X) \\
 	&= \arg\max_{\symbf{\theta}} p(X \mid \symbf{\theta}) p(\symbf{\theta}) \\
 	&= \arg\max_{\symbf{\theta}} \ln p(X \mid \symbf{\theta}) + \ln p(\symbf{\theta}) \\
-	&= \arg\max_{\symbf{\theta}} \sum_{k=1}^n \left( \ln p(\symbf{x_k} \mid \symbf{\theta}) + \ln p(\symbf{\theta}) \right)
+	&= \arg\max_{\symbf{\theta}} \sum_{k=1}^n \left( \ln p(\symbf{x}_k \mid \symbf{\theta}) + \ln p(\symbf{\theta}) \right)
 \end{split}\]
 
 
 \section{Linear Regression}
 
-Training data set: $(\symbf{x_n}, \symbf{y_n}),\ n=1, 2, \ldots, N$.
+Training data set: $(\symbf{x}_n, \symbf{y}_n),\ n=1, 2, \ldots, N$.
 
 Regression model ($\eta$: noise):
 \[y = w_0 + \symbf{w}^T \symbf{x} + \eta = [\symbf{w}^T w_0] \begin{bmatrix}\symbf{x} \\
@@ -288,10 +288,10 @@ Prediction model:
 \[\symbf{\hat y} = \symbf{\hat \theta}^T \symbf{x}\]
 
 Cost function:
-\[J(\symbf{\theta}) = \sum_{n=1}^N (y_n - \symbf{\theta}^T \symbf{x_n})^2 \]
+\[J(\symbf{\theta}) = \sum_{n=1}^N (y_n - \symbf{\theta}^T \symbf{x}_n)^2 \]
 
 Estimate $\symbf{\hat \theta}$:
-\[\left( \sum_{n=1}^N \symbf{x_n}\symbf{x_n}^T \right) \symbf{\hat \theta} = \sum_{n=1}^N \symbf{x_n} y_n\]
+\[\left( \sum_{n=1}^N \symbf{x}_n\symbf{x}_n^T \right) \symbf{\hat \theta} = \sum_{n=1}^N \symbf{x}_n y_n\]
 \[\symbf{\hat \theta} = (X^T X)^{-1} X^T \symbf{y}\]
 
 Estimate $\hat \theta$ (scalar version):
@@ -308,13 +308,13 @@ Jointly distributed random variables $\symbf{x}$, $\symbf{y}$:
 
 \subsubsection*{The Perceptron Algorithm}
 
-Training samples: $(y_n, \symbf{x_n}),\ n=1, 2, \ldots, N\ y \in \{-1, +1\}$.
+Training samples: $(y_n, \symbf{x}_n),\ n=1, 2, \ldots, N\ y \in \{-1, +1\}$.
 
 \[\exists \symbf{\theta}_*: \symbf{\theta}_*^T \symbf{x} > 0,\text{ if }\symbf{x} \in \omega_1\text{ and }\symbf{\theta}_*^T \symbf{x} < 0,\text{ if }\symbf{x} \in \omega_2\]
 
 Let $M_{\symbf{\theta}}$ be the set of the samples misclassified by $\symbf{\theta}$.
 
-\[J(\symbf{\theta}) = - \sum_{n: \symbf{x_n} \in M_{\symbf{\theta}}} y_n \symbf{\theta}^T \symbf{x_n}\]
+\[J(\symbf{\theta}) = - \sum_{n: \symbf{x}_n \in M_{\symbf{\theta}}} y_n \symbf{\theta}^T \symbf{x}_n\]
 
 \[y_n = \begin{cases}
 	+1, & \text{if } \symbf{x} \in \omega_1 \\
@@ -322,7 +322,7 @@ Let $M_{\symbf{\theta}}$ be the set of the samples misclassified by $\symbf{\the
 \end{cases}\]
 
 The perceptron rule:
-\[\symbf{\theta}^{(i)} = \symbf{\theta}^{(i-1)} + \mu_i \sum_{n: \symbf{x_n} \in M_{\symbf{\theta}^{(i-1)}}} y_n \symbf{x_n}\]
+\[\symbf{\theta}^{(i)} = \symbf{\theta}^{(i-1)} + \mu_i \sum_{n: \symbf{x}_n \in M_{\symbf{\theta}^{(i-1)}}} y_n \symbf{x}_n\]
 
 Pattern-by-pattern version (reward and punishment):
 \[\symbf{\theta}^{(i)} = \begin{cases}
@@ -363,25 +363,25 @@ $L$ layers.
 $r$-th layer has $k_r$ neurons.
 $k_0$ input nodes.
 
-Training samples: $(\symbf{x_n}, \symbf{y_n}),\ n=1, 2, \ldots, N$.
+Training samples: $(\symbf{x}_n, \symbf{y}_n),\ n=1, 2, \ldots, N$.
 
 $N$ input vectors:
-\[\symbf{x_n} = [x_{n 1}, x_{n 1}, \ldots , x_{n k_0}]^T \in \mathbb{R}^{k_0},\ n = 1, 2, \ldots, N\]
+\[\symbf{x}_n = [x_{n 1}, x_{n 1}, \ldots , x_{n k_0}]^T \in \mathbb{R}^{k_0},\ n = 1, 2, \ldots, N\]
 
 $N$ target output vectors:
-\[\symbf{y_n} = [y_{n 1}, y_{n 2}, \ldots , y_{n k_L}]^T \in \mathbb{R}^{k_L},\ n = 1, 2, \ldots, N\]
+\[\symbf{y}_n = [y_{n 1}, y_{n 2}, \ldots , y_{n k_L}]^T \in \mathbb{R}^{k_L},\ n = 1, 2, \ldots, N\]
 
 Output vectors: $\hat y_n$
 
-Let $\symbf{\theta_j^r}$ be the weight vector (including bias) of the $j$th neuron of the $r$th layer:
-\[\symbf{\theta_j^r} = [\theta_{j0}^r, \theta_{j1}^r, \ldots, \theta_{jk_{r-1}}^r]^T\]
+Let $\symbf{\theta}_j^r$ be the weight vector (including bias) of the $j$th neuron of the $r$th layer:
+\[\symbf{\theta}_j^r = [\theta_{j0}^r, \theta_{j1}^r, \ldots, \theta_{jk_{r-1}}^r]^T\]
 $\theta_{ji}^r$ denotes the weight from the $i$th neuron of the $(r-1)$th layer to the $j$th neuron of the $r$th layer.
 
-\[\symbf{y_n^r} \equiv [1, y_{n 1}^r, y_{n 2}^r, \ldots, y_{n k_L}^r]^T\]
+\[\symbf{y}_n^r \equiv [1, y_{n 1}^r, y_{n 2}^r, \ldots, y_{n k_L}^r]^T\]
 
 Iterative step of gradient descent:
 
-\[\symbf{\theta_j^r}(\text{new}) = \symbf{\theta_j^r}(\text{old}) - \mu \left.\frac{\partial J}{\partial \symbf{\theta_j^r}} \right|_{\symbf{\theta_j^r}(\text{old})}\]
+\[\symbf{\theta}_j^r(\text{new}) = \symbf{\theta}_j^r(\text{old}) - \mu \left.\frac{\partial J}{\partial \symbf{\theta}_j^r} \right|_{\symbf{\theta}_j^r(\text{old})}\]
 
 \subsubsection*{The Backpropagation Algorithm}
 
