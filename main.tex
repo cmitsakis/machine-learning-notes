@@ -119,16 +119,16 @@ A Bayesian classifier that minimizes the classification error probability.
 
 For two classes:
 \[\begin{split}
-	x \in \omega_1 &\Leftrightarrow P(\omega_1 \mid x) > P(\omega_2 \mid x) \\
-	&\Leftrightarrow P(x \mid \omega_1)P(\omega_1) > P(x \mid \omega_2)P(\omega_2)
+	\symbf{x} \in \omega_1 &\Leftrightarrow P(\omega_1 \mid \symbf{x}) > P(\omega_2 \mid \symbf{x}) \\
+	&\Leftrightarrow P(\symbf{x} \mid \omega_1)P(\omega_1) > P(\symbf{x} \mid \omega_2)P(\omega_2)
 \end{split}\]
 \[\begin{split}
-	x \in \omega_2 &\Leftrightarrow P(\omega_1 \mid x) < P(\omega_2 \mid x) \\
-	&\Leftrightarrow P(x \mid \omega_1)P(\omega_1) < P(x \mid \omega_2)P(\omega_2)
+	\symbf{x} \in \omega_2 &\Leftrightarrow P(\omega_1 \mid \symbf{x}) < P(\omega_2 \mid \symbf{x}) \\
+	&\Leftrightarrow P(\symbf{x} \mid \omega_1)P(\omega_1) < P(\symbf{x} \mid \omega_2)P(\omega_2)
 \end{split}\]
 
 For many classes:
-\[x \in \omega_i \Leftrightarrow P(\omega_i \mid x) > P(\omega_j \mid x),\ \forall j\ j \neq i\]
+\[\symbf{x} \in \omega_i \Leftrightarrow P(\omega_i \mid \symbf{x}) > P(\omega_j \mid \symbf{x}),\ \forall j\ j \neq i\]
 
 Error for two classes. Let $R_1$, $R_2$ be the regions where we decide $\omega_1$ and $\omega_2$ respectively.
 \[\begin{split}
