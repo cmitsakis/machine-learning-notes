@@ -104,7 +104,7 @@ $D$-dimensional Gaussian, $\symbf{x} \sim N(\symbf{\mu}, \symbf{\Sigma})$:
 
 \section{Bayesian Decision Theory}
 
-\[P(\omega_i \mid x) = \frac{P(x \mid \omega_i) P(\omega_i)}{P(x)} = \frac{P(x \mid \omega_i) P(\omega_i)}{\sum\limits_j P(x \mid \omega_j) P(\omega_j)}\]
+\[P(\omega_i \mid \symbf{x}) = \frac{P(\symbf{x} \mid \omega_i) P(\omega_i)}{P(\symbf{x})} = \frac{P(\symbf{x} \mid \omega_i) P(\omega_i)}{\sum\limits_j P(\symbf{x} \mid \omega_j) P(\omega_j)}\]
 
 \begin{mdframed}
 	\textbf{videos}
@@ -150,16 +150,16 @@ usually:
 	\lambda_{21} & 0
 \end{bmatrix}\]
 
-\[l_1 = \lambda_{11} p(x \mid \omega_1)P(\omega_1) + \lambda_{21} p(x \mid \omega_2)P(\omega_2)\]
-\[l_2 = \lambda_{12} p(x \mid \omega_1)P(\omega_1) + \lambda_{22} p(x \mid \omega_2)P(\omega_2)\]
+\[l_1 = \lambda_{11} p(\symbf{x} \mid \omega_1)P(\omega_1) + \lambda_{21} p(\symbf{x} \mid \omega_2)P(\omega_2)\]
+\[l_2 = \lambda_{12} p(\symbf{x} \mid \omega_1)P(\omega_1) + \lambda_{22} p(\symbf{x} \mid \omega_2)P(\omega_2)\]
 
-$x \in \omega_1$ if:
+$\symbf{x} \in \omega_1$ if:
 \[l_1 < l_2\]
-\[(\lambda_{21}-\lambda_{22}) P(\omega_2) p(x \mid \omega_2) < (\lambda_{12}-\lambda_{11}) P(\omega_1) p(x \mid \omega_1)\]
+\[(\lambda_{21}-\lambda_{22}) P(\omega_2) p(\symbf{x} \mid \omega_2) < (\lambda_{12}-\lambda_{11}) P(\omega_1) p(\symbf{x} \mid \omega_1)\]
 if $\lambda_{11} = \lambda_{22} = 0$:
-\[\lambda_{21} P(\omega_2) p(x \mid \omega_2) < \lambda_{12} P(\omega_1) p(x \mid \omega_1)\]
+\[\lambda_{21} P(\omega_2) p(\symbf{x} \mid \omega_2) < \lambda_{12} P(\omega_1) p(\symbf{x} \mid \omega_1)\]
 
-\[x \in \omega_1 (\omega_2) \text{ if } \frac{p(x \mid \omega_1)}{p(x \mid \omega_2)} > (<) \frac{P(\omega_2)}{P(\omega_1)}\frac{\lambda_{21}-\lambda_{22}}{\lambda_{12}-\lambda_{11}}\]
+\[\symbf{x} \in \omega_1 (\omega_2) \text{ if } \frac{p(\symbf{x} \mid \omega_1)}{p(\symbf{x} \mid \omega_2)} > (<) \frac{P(\omega_2)}{P(\omega_1)}\frac{\lambda_{21}-\lambda_{22}}{\lambda_{12}-\lambda_{11}}\]
 
 \subsection{Discriminant functions}
 $g_i (\symbf{x}) \equiv f(P(\omega_i \mid \symbf{x}))$ where $f$ is a monotonically increasing function.
