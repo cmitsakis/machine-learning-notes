@@ -299,7 +299,9 @@ Cost function:
 \[J(\symbf{\theta}) = \sum_{n=1}^N (y_n - \symbf{\theta}^T \symbf{x}_n)^2 \]
 
 Estimate $\symbf{\hat \theta}$:
+\[\nabla_{\symbf{\theta}} J(\symbf{\theta}) = \vec{0}\]
 \[\left( \sum_{n=1}^N \symbf{x}_n\symbf{x}_n^T \right) \symbf{\hat \theta} = \sum_{n=1}^N \symbf{x}_n y_n\]
+\[(X^T X) \symbf{\hat \theta} = X^T \symbf{y}\]
 \[\symbf{\hat \theta} = (X^T X)^{-1} X^T \symbf{y}\]
 
 Estimate $\hat \theta$ (scalar version):
