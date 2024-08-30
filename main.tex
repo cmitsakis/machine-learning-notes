@@ -55,12 +55,15 @@ or, alternatively
 \[P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}\]
 \[P(A_i \mid B) = \frac{P(B \mid A_i) P(A_i)}{\sum\limits_j P(B \mid A_j) P(A_j)}\]
 
-\subsection{Probability densities}
-\[P[x \in (a, b)] = \int_a^b p(x)\ dx\]
-cumulative distribution function:
-\[P(z) = \int_{-\infty}^z p(x)\ dx\]
+\subsection{Continuous random variables}
+cumulative distribution function (CDF):
+\[F_X(x) \coloneq P(X \le x)\]
+probability density function (PDF):
+\[p_X(x) \coloneq \frac{d F_X(x)}{dx}\]
+\[F_X(x) = \int_{-\infty}^x p_X(z)\ dz\]
+\[P(x \in (a, b)) = \int_a^b p_X(x)\ dx\]
 sum rule:
-\[p(x) = \int p(x, y)\ dx\]
+\[p(x) = \int_{-\infty}^\infty p(x, y)\ dy\]
 product rule:
 \[p(x, y) = p(x) p(y \mid x)\]
 
