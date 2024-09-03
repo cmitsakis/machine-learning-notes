@@ -398,6 +398,9 @@ Iterative step of gradient descent:
 
 \[\symbf{\theta}_j^r(\text{new}) = \symbf{\theta}_j^r(\text{old}) - \mu \left.\frac{\partial J}{\partial \symbf{\theta}_j^r} \right|_{\symbf{\theta}_j^r(\text{old})}\]
 
+where $J$ is the cost function:
+\[J \coloneq \sum_{n=1}^{N} \mathcal{L}(y_n, \hat y_n)\]
+
 \subsubsection*{The Backpropagation Algorithm}
 
 \begin{mdframed}
@@ -415,7 +418,8 @@ Iterative step of gradient descent:
 \end{mdframed}
 
 For the $k$-th neuron of layer $r$ we have:
-\[\symbf{y}_k^r = f\left((\symbf{\theta}_k^r)^T \symbf{y}^{r-1}\right),\ k=1, 2, \ldots, k_r\]
+\[z_k^r = (\symbf{\theta}_k^r)^T \symbf{y}^{r-1},\ k=1, 2, \ldots, k_r\]
+\[y_k^r = f\left((\symbf{\theta}_k^r)^T \symbf{y}^{r-1}\right),\ k=1, 2, \ldots, k_r\]
 
 in layer $r$ we have:
 \begin{figure}[H]
@@ -483,28 +487,46 @@ in layer $r$ we have:
 
 \textbf{Forward pass - calculations for layer r}
 
-\[z_j^r = \sum_{n=1}^{k_{r-1}} \left( w_{in}^r y_n^{r-1} \right) + b_j^r,\ j=1, 2, \ldots, k_r\]
-\[y_j^r = f(z_j^r),\ j=1, 2, \ldots, k_r\]
+for $j=1, 2, \ldots, k_r$:
+\[z_j^r = \sum_{n=1}^{k_{r-1}} \left( w_{in}^r y_n^{r-1} \right) + b_j^r\]
+\[y_j^r = f(z_j^r)\]
 
 \textbf{Backward pass - calculations for layer L (last)}
 
+for $j=1, 2, \ldots, k_L$ assuming $\mathcal{L} = \frac{1}{2} \sum_j (y_j^L - t_j)^2$:
+\[\overline{y_j^L} = y_j^L - t_j\]
 \[\overline{z_j^L} = \overline{y_j^L} f'(z_j^L)\]
 
 \textbf{Backward pass - calculations for layer r}
 
-(notation: $\overline{a} \equiv \frac{\partial J}{\partial a}$)
+(notation: $\overline{a} \equiv \frac{\partial \mathcal{L}}{\partial a}$)
 
-Using $\overline{y^r}$ (we calculated on layer $r+1$), for $j=1, \ldots, k_r$ we calculate the following:
-
-\[\overline{z_j^r} = \overline{y_j^r} f'(z_j^r)\]
-
-\[\overline{y_j^{r-1}} = \sum_{n=1}^{k_{r}} \frac{\partial z_n^r}{\partial y_j^{r-1}} \overline{z_n^r} = \sum_{n=1}^{k_{r}} w_{jn}^r \overline{z_n^r}\]
+Using $\overline{z^r}$ (we calculated on layer $r+1$), for $j=1, \ldots, k_r$ we calculate the following:
 
 \[\overline{w_{ji}^r} = \overline{z_j^r} y_i^{r-1},\ i=1, \ldots, k_{r-1}\]
 
 \[\overline{b_j^r} = \overline{z_j^r}\]
 
+Calculate $\overline{z_j^{r-1}}$ (useful for calculation in layer $r-1$):
+
+\[\overline{y_j^{r-1}} = \sum_{n=1}^{k_{r}} \frac{\partial z_n^r}{\partial y_j^{r-1}} \overline{z_n^r} = \sum_{n=1}^{k_{r}} w_{nj}^r \overline{z_n^r}\]
+
 \[\overline{z_j^{r-1}} = \overline{y_j^{r-1}} f'(z_j^{r-1})\]
+
+\textbf{Update weights and bias}
+
+For $j=1, \ldots, k_r$:
+
+\[\symbf{w}_j^r\{\text{new}\} = \symbf{w}_j^r\{\text{old}\} - \mu \left.\frac{\partial J}{\partial \symbf{w}_j^r}\right|_{\symbf{w}_j^r\{\text{old}\}}\]
+
+($\overline{z_j^r}\{n\}$ denotes the value of $\overline{z_j^r}$ at the $n$-th training sample)
+
+\[\Delta \symbf{w}_{j}^r = - \mu \sum_{n=1}^N \overline{\symbf{w}_j^r}\{n\} = - \mu \sum_{n=1}^N \overline{z_j^r}\{n\} \symbf{y}^{r-1}\{n\}\]
+
+\[\symbf{w}_{j}^r\{i+1\} = \symbf{w}_{j}^r\{i\} + \Delta \symbf{w}_{j}^r\]
+
+online mode:
+\[\symbf{w}_{j}^r\{i+1\} = \symbf{w}_{j}^r\{i\} - \mu \overline{z_j^r}\{i\} \symbf{y}^{r-1}\{i\}\]
 
 \textbf{Multivariate Chain Rule}
 \[\frac{\partial}{\partial t} f(x(t), y(t)) = \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}\]
