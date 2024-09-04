@@ -81,7 +81,7 @@ product rule:
 	&= \operatorname{Cov}(X, X)
 \end{split}\]
 \[\begin{split}
-	\operatorname{cov}(X, Y) &:= E{\left[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])\right]} \\
+	\operatorname{cov}(X, Y) &:= \mathbb{E}\left[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])\right] \\
 	&= \mathbb{E}[X Y] - \mathbb{E}[X] \mathbb{E}[Y]
 \end{split}\]
 \[r_{xy} := \mathbb{E}[X Y]\]
@@ -310,7 +310,7 @@ Estimate $\hat \theta$ (scalar version):
 \[\hat \theta = \frac{\sum_{n=1}^N x_n y_n}{\sum_{n=1}^N x_n^2}\]
 
 Jointly distributed random variables $\symbf{x}$, $\symbf{y}$:
-\[\symbf{\hat y} \equiv \arg\min_{\symbf{\hat y}} E\left[ \left\Vert \symbf{y} - \symbf{\hat y} \right\Vert^2 \right] \equiv \symbf{\hat g}(\symbf{x}) = \mathbb{E}[\symbf{y} | \symbf{x}]\]
+\[\symbf{\hat y} \equiv \arg\min_{\symbf{\hat y}} \mathbb{E}\left[ \left\Vert \symbf{y} - \symbf{\hat y} \right\Vert^2 \right] \equiv \symbf{\hat g}(\symbf{x}) = \mathbb{E}[\symbf{y} | \symbf{x}]\]
 
 
 \section{Neural Networks}
