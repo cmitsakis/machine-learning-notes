@@ -341,7 +341,7 @@ Pattern-by-pattern version (reward and punishment):
 	\symbf{\theta}^{(i-1)}, &\text{otherwise}
 \end{cases}\]
 
-or:
+or if $y_n \in \{0, 1\}$:
 \[\symbf{\theta}^{(i)} = \symbf{\theta}^{(i-1)} + \mu_i \left( y_i - h \left((\symbf{\theta}^{(i-1)})^T \symbf{x}_i \right) \right) \symbf{x}_i\]
 \[h(z) = \begin{cases}
 	1, & \text{if } z > 0 \\
