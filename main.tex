@@ -553,6 +553,126 @@ online mode:
 \[\sigma'(x) = a \sigma(x) (1-\sigma(x))\]
 
 
+\section{Feature Selection}
+
+\subsection{Hypothesis Testing}
+
+\subsubsection{Known variance case}
+\[\bar x = \frac{1}{N} \sum_{i=1}^{N} x_i \quad \mathbb{E}[\bar x] = \mu \quad \sigma_{\bar x}^2 = \frac{1}{N} \sigma^2\]
+
+Test statistic:
+\[q = \frac{\bar x - \hat \mu}{\sigma / \sqrt{N}} \sim N(0, 1)\]
+
+\subsubsection{Unknown variance case}
+\[\hat \sigma^2 \coloneq \frac{1}{N - 1} \sum_{i=1}^{N} (x_i - \bar x)^2 \quad \mathbb{E}[\sigma^2] = \sigma^2\]
+
+Test statistic:
+\[q = \frac{\bar x - \mu}{\hat \sigma / \sqrt{N}}\]
+
+If $x$ is Gaussian, $q$ is t-distribution with $N-1$ degrees of freedom.
+
+\subsubsection{t-test for feature selection}
+$x_i$: $N$ samples from $\omega_1$ with mean $\mu_1$ and variance $\sigma^2$.\\
+$y_i$: $N$ samples from $\omega_2$ with mean $\mu_2$ and variance $\sigma^2$.
+\[H_0: \mu_1 - \mu_2 = 0\]
+\[z \coloneq x - y \Rightarrow \bar z = \bar x - \bar y\]
+\[q = \frac{(\bar x - \bar y) - (\mu_1 - \mu_2)}{s_z \sqrt{\frac{2}{N}}}\]
+where
+\[s_z^2 = \frac{1}{2N - 2} \left( \sum_{i=1}^N (x_i - \bar x)^2 + \sum_{i=1}^N (y_i - \bar y)^2 \right) = \frac{1}{2} (\hat \sigma_1^2 + \hat \sigma_2^2)\]
+If $x \sim N(\mu_1, \sigma^2)$ and $y \sim N(\mu_2, \sigma^2)$, then $q$ follows the t-distribution with $2N-2$ degrees of freedom.
+
+\paragraph{known variance case}
+\[q = \frac{(\bar x - \bar y) - (\hat \mu_1 - \hat \mu_2)}{\sigma \sqrt{\frac{2}{N}}}\]
+
+\subsubsection{Scatter Matrices}
+
+Within class scatter matrix
+\[S_w \coloneq \sum_{i=1}^{M} P(\omega_i) \mathbb{E}[(\symbf{x} - \symbf{\mu}_i) (\symbf{x} - \symbf{\mu}_i)^T]\]
+
+Between class scatter matrix
+\[S_b \coloneq \sum_{i=1}^{M} P(\omega_i) (\symbf{\mu}_i - \symbf{\mu}_0) (\symbf{\mu}_i - \symbf{\mu}_0)^T\]
+\[\symbf{\mu}_0 \coloneq \sum_{i=1}^{M} P(\omega_i) \symbf{\mu}_i\]
+
+Mixture scatter matrix
+\[S_m \coloneq \mathbb{E}[(\symbf{x}-\symbf{\mu}_0)(\symbf{x}-\symbf{\mu}_0)^T]\]
+\[S_m = S_w + S_b\]
+
+\section{Feature Generation}
+
+\subsection{Dimensionality Reduction}
+
+\subsubsection{Principal Component Analysis}
+
+\subsubsection{Linear Discriminant Analysis}
+Projection vector
+\[\symbf{w} = S_w^{-1} (\symbf{\mu}_1 - \symbf{\mu}_2)\]
+
+Projection of $\symbf{x}$ along $\symbf{w}$
+\[y = \frac{\symbf{w}^T \symbf{x}}{||\symbf{w}||}\]
+
+Optimal direction is the $\symbf{w}$ that maximizes:
+\[\operatorname{FDR}(\symbf{w}) = \frac{\symbf{w}^T S_b \symbf{w}}{\symbf{w}^T S_w \symbf{w}}\]
+\[\symbf{w} = \symbf{S}_w^{-1} (\symbf{\mu}_1 - \symbf{\mu}_2)\]
+
+
+\section{Mathematics}
+
+\subsection{Calculus}
+
+Leibniz integral rule:
+\[\begin{split}
+	\frac{d}{dx} \left( \int_{a(x)}^{b(x)} f(x, t) \, dt \right) = f \left( x, b(x) \right) \cdot \frac{d}{dx} b(x) \\
+	- f \left( x, a(x) \right) \cdot \frac{d}{dx} a(x) + \int_{a(x)}^{b(x)}\frac{\partial}{\partial x} f(x, t) \, dt
+\end{split}\]
+
+\[\frac{d}{dx} \left( \int_a^x f(x, t) \, dt \right) = f(x, x) + \int_a^x \frac{\partial}{\partial x} f(x, t) \, dt\]
+
+\subsection{Linear Algebra}
+
+Let $z$ be vector
+\[z^T z = \sum_i z_i^2\]
+
+\[diag(a_1, a_2, \ldots, a_n)^{-1} = diag\left(\frac{1}{a_1}, \frac{1}{a_2}, \ldots, \frac{1}{a_n}\right)\]
+
+\[det(A^{-1}) = \frac{1}{det(A)}\]
+
+\[det(diag(a_1, a_2, \ldots, a_n)) = a_1 a_2 \ldots a_n\]
+
+\[tr A = A_{11} + A_{22} + \ldots\]
+\[tr A_T = A\]
+\[tr AB = tr BA\]
+\[tr ABC = tr CAB\]
+\[f(A) := tr AB \Rightarrow \nabla_A f(A) = B^T\]
+\[\nabla_A A A^T C = CA + C^T A \]
+
+\[\begin{bmatrix}
+	a & b \\
+	c & d
+\end{bmatrix}^{-1} = \frac{1}{ad - bc} \begin{bmatrix}
+	d  & -b \\
+	-c & a
+\end{bmatrix}\]
+
+\subsection{Matrix Calculus}
+
+Let $f: R^n \rightarrow R$
+
+\[\nabla f = \begin{bmatrix}
+	\frac{\partial f}{\partial x_1} \\
+	\vdots \\
+	\frac{\partial f}{\partial x_n}
+\end{bmatrix}\]
+
+Let $A \in R^{m \times n}$ and $f: R^{m \times n} \rightarrow R$
+
+\[\nabla_A f = \begin{bmatrix}
+	\frac{\partial f}{\partial A_{11}} & \frac{\partial f}{\partial A_{12}} \ldots\\
+	\frac{\partial f}{\partial A_{21}} & \frac{\partial f}{\partial A_{22}} \ldots\\
+	\vdots & \vdots\\
+\end{bmatrix}\]
+
+\[\frac{\partial}{\partial \symbf{w}} (\symbf{w} \symbf{y} + \symbf{b}) = \symbf{y}^T\]
+
 \end{multicols}
 
 \end{document}
