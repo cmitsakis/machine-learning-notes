@@ -313,6 +313,22 @@ Jointly distributed random variables $\symbf{x}$, $\symbf{y}$:
 \[\symbf{\hat y} \equiv \arg\min_{\symbf{\hat y}} \mathbb{E}\left[ \left\Vert \symbf{y} - \symbf{\hat y} \right\Vert^2 \right] \equiv \symbf{\hat g}(\symbf{x}) = \mathbb{E}[\symbf{y} | \symbf{x}]\]
 
 
+\section{Logistic Regression}
+
+2 classes: $\omega_1$, $\omega_2$
+\[P(\omega_1 \mid \symbf{x}) = \sigma(\symbf{\theta}^T \symbf{x})\]
+\[\sigma(t) := \frac{1}{1+e^{-t}}\]
+
+Find $\theta$ using maximum likelihood estimation.
+
+Training samples: $(\symbf{x}_n, y_n),\ n=1, 2, \ldots, N, y_n \in {0, 1}$.
+
+\[P(y_1, y_2, \ldots, y_N ; \symbf{\theta}) = \prod_{n=1}^N \left( \sigma(\symbf{\theta}^T \symbf{x}) \right)^{y_n} \left( 1 - \sigma(\symbf{\theta}^T \symbf{x}) \right)^{1-y_n}\]
+
+Gradient descent:
+\[\symbf{\theta}^{(i)} = \symbf{\theta}^{(i-1)} + \mu_i X^T \left( (\symbf{\theta}^{(i-1)})^T \symbf{x} - \symbf{y} \right)\]
+
+
 \section{Neural Networks}
 
 \subsection{The Perceptron}
